@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy2trr1yvumud"]
+
+[ext_resource type="Script" uid="uid://c137rmf0xsq0" path="res://main_menu/menu_button.gd" id="1_yrgx8"]
+
+[sub_resource type="Gradient" id="Gradient_yrgx8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cpvkq"]
+gradient = SubResource("Gradient_yrgx8")
+
+[sub_resource type="Gradient" id="Gradient_6gjup"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_amr24"]
+gradient = SubResource("Gradient_6gjup")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[node name="TextureButton" type="TextureButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture2D_cpvkq")
+texture_pressed = SubResource("GradientTexture2D_amr24")
+stretch_mode = 0
+script = ExtResource("1_yrgx8")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
