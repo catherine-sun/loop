@@ -1,0 +1,29 @@
+{
+	"levels": [
+		{
+			"name": "Crown Knot",
+			"numRopes": 3,
+			"knot": "crown"
+		},
+		{
+			"name": "Figure 8 Knot",
+			"numRopes": 2,
+			"knot": "figure8"
+		},
+		{
+			"name": "Square Knot",
+			"numRopes": 2,
+			"knot": "crown"
+		},
+		{
+			"name": "IDK Knot",
+			"numRopes": 2,
+			"knot": "crown"
+		},
+		{
+			"name": "idkkkk",
+			"knot": "crown"
+
+		}
+	]
+}
