@@ -1,4 +1,4 @@
-extends TextureButton
+extends AspectRatioContainer
 
 
 func _ready():
@@ -11,7 +11,7 @@ func _ready():
 	var gradient_texture = GradientTexture2D.new()
 	gradient_texture.gradient = gradient
 
-	texture_normal = gradient_texture
+	$MenuTextureButton.texture_normal = gradient_texture
 
 	gradient = Gradient.new()
 	gradient.offsets = []
@@ -22,7 +22,7 @@ func _ready():
 	gradient_texture = GradientTexture2D.new()
 	gradient_texture.gradient = gradient
 
-	texture_pressed = gradient_texture
+	$MenuTextureButton.texture_pressed = gradient_texture
 	gradient = Gradient.new()
 	gradient.offsets = []
 	gradient.colors = []
@@ -32,4 +32,4 @@ func _ready():
 	gradient_texture = GradientTexture2D.new()
 	gradient_texture.gradient = gradient
 
-	texture_hover = gradient_texture
+	$MenuTextureButton.texture_hover = gradient_texture
