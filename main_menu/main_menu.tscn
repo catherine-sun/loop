@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bc0we575yxyvp" path="res://main_menu/main_menu.gd" id="1_3shxk"]
 [ext_resource type="PackedScene" uid="uid://cy2trr1yvumud" path="res://main_menu/menu_button.tscn" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://irjmoyg2q3bn" path="res://main_menu/MarginContainer.cs" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://w2ynajci08o3" path="res://main_menu/main_menu_margin.gd" id="2_3f7m4"]
 [ext_resource type="Script" uid="uid://ucl61ycp7cdr" path="res://main_menu/endless_button.gd" id="4_3f7m4"]
 [ext_resource type="Script" uid="uid://cbwb6vuavr4aa" path="res://main_menu/play_button.gd" id="4_bws42"]
 
@@ -16,7 +16,7 @@ script = ExtResource("1_3shxk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-script = ExtResource("1_7vrkn")
+script = ExtResource("2_3f7m4")
 
 [node name="MainMenuItems" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
