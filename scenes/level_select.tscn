@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0ywpex5a18pv"]
+[gd_scene load_steps=7 format=3 uid="uid://c0ywpex5a18pv"]
 
-[ext_resource type="Script" uid="uid://cdprftqnmibfq" path="res://level_select/level_select_margin.gd" id="1_l7jsa"]
-[ext_resource type="Script" uid="uid://dyuysun3s8irk" path="res://level_select/level_select_grid.gd" id="2_sv8in"]
+[ext_resource type="Script" uid="uid://cdprftqnmibfq" path="res://scripts/level_select/level_select_margin.gd" id="1_rif6e"]
+[ext_resource type="Script" uid="uid://dyuysun3s8irk" path="res://scripts/level_select/level_select_grid.gd" id="2_chg43"]
+[ext_resource type="Texture2D" uid="uid://d0n7nwxjvfvew" path="res://assets/images/alpaca_snatched.png" id="3_r77uv"]
+[ext_resource type="Texture2D" uid="uid://c33kf3r2g6fmd" path="res://assets/images/alpaca_hug.png" id="4_4nqmc"]
+[ext_resource type="JSON" path="res://data/levels.json" id="5_chg43"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv8in"]
 bg_color = Color(1, 0.847059, 0.886275, 1)
@@ -16,7 +19,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sv8in")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-script = ExtResource("1_l7jsa")
+script = ExtResource("1_rif6e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -35,4 +38,7 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
-script = ExtResource("2_sv8in")
+script = ExtResource("2_chg43")
+level_image = ExtResource("3_r77uv")
+level_image_hover = ExtResource("4_4nqmc")
+level_data = ExtResource("5_chg43")

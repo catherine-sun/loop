@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnt15cha1k0tk"]
 
 [ext_resource type="Texture2D" uid="uid://bqv7iqpkleup" path="res://icon.svg" id="1_0756u"]
-[ext_resource type="PackedScene" uid="uid://qn7fv84ag5v0" path="res://rope/rope_segment.tscn" id="2_nmccy"]
+[ext_resource type="PackedScene" uid="uid://qn7fv84ag5v0" path="res://components/rope/rope_segment.tscn" id="2_nmccy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmccy"]
 

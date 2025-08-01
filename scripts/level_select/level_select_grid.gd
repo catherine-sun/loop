@@ -1,8 +1,13 @@
 extends GridContainer
 
+@export var level_image: Texture2D
+@export var level_image_hover: Texture2D
+
+@export var level_data: JSON
+
 var levels = {}
 func _ready() -> void:
-	var levels = parse_json(load_json())
+	var levels = level_data.get_data()
 	print(levels)
 	print(levels["levels"])
 	
@@ -21,12 +26,8 @@ func _ready() -> void:
 		levelBox.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		levelBox.stretch_mode = TextureButton.STRETCH_SCALE
 
-		var levelBoxTexture = ImageTexture.new()
-		levelBoxTexture.set_image(Image.load_from_file("res://level_select/alpaca_snatched.png")) 
-		levelBox.texture_normal = levelBoxTexture
-		var levelBoxTextureHover = ImageTexture.new()
-		levelBoxTextureHover.set_image(Image.load_from_file("res://level_select/alpaca_hug.png")) 
-		levelBox.texture_hover = levelBoxTextureHover
+		levelBox.texture_normal = level_image
+		levelBox.texture_hover = level_image_hover
 		var center_container = CenterContainer.new()
 		center_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		center_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -55,19 +56,3 @@ func _ready() -> void:
 
 		add_child(aspect_container)
 		i+=1
-
-func parse_json(string):
-	var json = JSON.new()
-	var error = json.parse(string)
-	if error != OK:
-		print("Error loading levels json")
-		return null
-	return json.get_data()
-func load_json():
-	var file_path = "res://levels.json"
-	if FileAccess.file_exists(file_path):
-		var file = FileAccess.open(file_path, FileAccess.READ)
-		return file.get_as_text()
-	else:
-		push_error("levels.json not found at %s" % file_path)
-		return ""

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w3uov6vtui2l"
-path="res://.godot/imported/playButton.png-4e397ffdde46e10450c72492ce797914.ctex"
+uid="uid://d0n7nwxjvfvew"
+path="res://.godot/imported/alpaca_snatched.png-9213af891e7834c9f4db275f9a2e0594.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main_menu/playButton.png"
-dest_files=["res://.godot/imported/playButton.png-4e397ffdde46e10450c72492ce797914.ctex"]
+source_file="res://assets/images/alpaca_snatched.png"
+dest_files=["res://.godot/imported/alpaca_snatched.png-9213af891e7834c9f4db275f9a2e0594.ctex"]
 
 [params]
 
