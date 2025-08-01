@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmn3de62ckbis"]
+[gd_scene load_steps=7 format=3 uid="uid://dmn3de62ckbis"]
 
-[ext_resource type="Script" uid="uid://bc0we575yxyvp" path="res://main_menu/main_menu.gd" id="1_3shxk"]
-[ext_resource type="PackedScene" uid="uid://cy2trr1yvumud" path="res://main_menu/menu_button.tscn" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://w2ynajci08o3" path="res://main_menu/main_menu_margin.gd" id="2_3f7m4"]
-[ext_resource type="Script" uid="uid://ucl61ycp7cdr" path="res://main_menu/endless_button.gd" id="4_3f7m4"]
-[ext_resource type="Script" uid="uid://cbwb6vuavr4aa" path="res://main_menu/play_button.gd" id="4_bws42"]
+[ext_resource type="Script" uid="uid://bc0we575yxyvp" path="res://scripts/main_menu/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Script" uid="uid://w2ynajci08o3" path="res://scripts/main_menu/main_menu_margin.gd" id="2_rtw2f"]
+[ext_resource type="PackedScene" uid="uid://cy2trr1yvumud" path="res://components/buttons/menu_button.tscn" id="3_oa1go"]
+[ext_resource type="Texture2D" uid="uid://db31eacpikg7g" path="res://assets/images/infinityButton.png" id="4_rtw2f"]
+[ext_resource type="Script" uid="uid://cbwb6vuavr4aa" path="res://scripts/main_menu/play_button.gd" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://w3uov6vtui2l" path="res://assets/images/playButton.png" id="6_oa1go"]
 
 [node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 15
@@ -12,11 +13,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3shxk")
+script = ExtResource("1_8ln24")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-script = ExtResource("2_3f7m4")
+script = ExtResource("2_rtw2f")
 
 [node name="MainMenuItems" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -36,11 +37,11 @@ size_flags_vertical = 3
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="EndlessButton" parent="MarginContainer/MainMenuItems/MenuOptions" instance=ExtResource("1_06t4h")]
+[node name="EndlessButton" parent="MarginContainer/MainMenuItems/MenuOptions" instance=ExtResource("3_oa1go")]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment_horizontal = 2
-script = ExtResource("4_3f7m4")
+iconTexture = ExtResource("4_rtw2f")
 
 [node name="Label" type="Label" parent="MarginContainer/MainMenuItems/MenuOptions/EndlessButton"]
 layout_mode = 2
@@ -49,11 +50,12 @@ text = "ENDLESS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" parent="MarginContainer/MainMenuItems/MenuOptions" instance=ExtResource("1_06t4h")]
+[node name="PlayButton" parent="MarginContainer/MainMenuItems/MenuOptions" instance=ExtResource("3_oa1go")]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment_horizontal = 0
-script = ExtResource("4_bws42")
+script = ExtResource("5_jk1qb")
+iconTexture = ExtResource("6_oa1go")
 
 [node name="Label" type="Label" parent="MarginContainer/MainMenuItems/MenuOptions/PlayButton"]
 layout_mode = 2

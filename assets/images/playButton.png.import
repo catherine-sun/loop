@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db31eacpikg7g"
-path="res://.godot/imported/infinityButton.png-89bb28422096c3981e13a443578d1f59.ctex"
+uid="uid://w3uov6vtui2l"
+path="res://.godot/imported/playButton.png-53a278c233ddc9b2a4c2b5631f8d101d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main_menu/infinityButton.png"
-dest_files=["res://.godot/imported/infinityButton.png-89bb28422096c3981e13a443578d1f59.ctex"]
+source_file="res://assets/images/playButton.png"
+dest_files=["res://.godot/imported/playButton.png-53a278c233ddc9b2a4c2b5631f8d101d.ctex"]
 
 [params]
 

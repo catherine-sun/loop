@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cy2trr1yvumud"]
 
-[ext_resource type="Script" uid="uid://c137rmf0xsq0" path="res://main_menu/menu_button.gd" id="1_yrgx8"]
+[ext_resource type="Script" uid="uid://c137rmf0xsq0" path="res://scripts/main_menu/menu_button.gd" id="1_yrgx8"]
 
 [node name="AspectRatioContainer" type="AspectRatioContainer"]
 anchors_preset = 15

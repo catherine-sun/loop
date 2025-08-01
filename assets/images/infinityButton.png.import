@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c33kf3r2g6fmd"
-path="res://.godot/imported/alpaca_hug.png-4eb2dab2cb8c0f98280ed6f6bfcbf8e6.ctex"
+uid="uid://db31eacpikg7g"
+path="res://.godot/imported/infinityButton.png-708c7d0b084df581791a769228d5752e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level_select/alpaca_hug.png"
-dest_files=["res://.godot/imported/alpaca_hug.png-4eb2dab2cb8c0f98280ed6f6bfcbf8e6.ctex"]
+source_file="res://assets/images/infinityButton.png"
+dest_files=["res://.godot/imported/infinityButton.png-708c7d0b084df581791a769228d5752e.ctex"]
 
 [params]
 

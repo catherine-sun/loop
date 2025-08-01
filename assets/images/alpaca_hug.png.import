@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0n7nwxjvfvew"
-path="res://.godot/imported/alpaca_snatched.png-c44fc3d9e9bc54baa0afd74408290dfe.ctex"
+uid="uid://c33kf3r2g6fmd"
+path="res://.godot/imported/alpaca_hug.png-46ba72983865cedf7cf55d8ff742f895.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level_select/alpaca_snatched.png"
-dest_files=["res://.godot/imported/alpaca_snatched.png-c44fc3d9e9bc54baa0afd74408290dfe.ctex"]
+source_file="res://assets/images/alpaca_hug.png"
+dest_files=["res://.godot/imported/alpaca_hug.png-46ba72983865cedf7cf55d8ff742f895.ctex"]
 
 [params]
 
