@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cebiat2fmiqcc"]
 
-[ext_resource type="Texture2D" uid="uid://d4i8xi6pk30lf" path="res://assets/images/ropeEnd.png" id="1_07iwa"]
+[ext_resource type="Texture2D" uid="uid://d4i8xi6pk30lf" path="res://assets/images/rope/ropeEnd.png" id="1_07iwa"]
 [ext_resource type="Script" uid="uid://cr2dsbj0la5v6" path="res://scripts/rope/rope_end.gd" id="2_07iwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07iwa"]
