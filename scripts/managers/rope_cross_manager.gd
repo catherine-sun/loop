@@ -66,7 +66,9 @@ func init(ropeIds):
 	for i in ropeIds:
 		crosses[i] = []
 
+func isInACross(ropeId):
+	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(crosses)
 	pass

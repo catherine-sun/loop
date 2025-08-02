@@ -12,7 +12,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if (RopeManager.isInACross(ropeId)):
+		get_node("Area2D/Icon").modulate =  Color(1, 1, 0)
+	else:
+		get_node("Area2D/Icon").modulate =  Color(1, 1, 1)
 
 func setRopeIds(i):
 	ropeId = i
