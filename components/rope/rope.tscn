@@ -25,6 +25,8 @@ node_b = NodePath("../RopeSegment2")
 
 [node name="RopeSegment2" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(40, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="."]
 position = Vector2(70, 0)
@@ -33,6 +35,8 @@ node_b = NodePath("../RopeSegment3")
 
 [node name="RopeSegment3" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(100, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="."]
 position = Vector2(130, 0)
@@ -41,6 +45,8 @@ node_b = NodePath("../RopeSegment4")
 
 [node name="RopeSegment4" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(160, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="."]
 position = Vector2(190, 0)
@@ -49,6 +55,8 @@ node_b = NodePath("../RopeSegment5")
 
 [node name="RopeSegment5" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(220, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="."]
 position = Vector2(250, 0)
@@ -57,6 +65,8 @@ node_b = NodePath("../RopeSegment6")
 
 [node name="RopeSegment6" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(280, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D6" type="PinJoint2D" parent="."]
 position = Vector2(310, 0)
@@ -65,6 +75,8 @@ node_b = NodePath("../RopeSegment7")
 
 [node name="RopeSegment7" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(340, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D7" type="PinJoint2D" parent="."]
 position = Vector2(370, 0)
@@ -74,6 +86,8 @@ node_b = NodePath("../RopeSegment8")
 
 [node name="RopeSegment8" parent="." instance=ExtResource("2_nmccy")]
 position = Vector2(400, 0)
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="PinJoint2D8" type="PinJoint2D" parent="."]
 position = Vector2(430, 0)
@@ -83,3 +97,5 @@ node_b = NodePath("../RopeEnd")
 
 [node name="RopeEnd" parent="." instance=ExtResource("3_gkakv")]
 position = Vector2(466, 0)
+drag_force_strength = 0.0
+drag_linear_damp = 0.0

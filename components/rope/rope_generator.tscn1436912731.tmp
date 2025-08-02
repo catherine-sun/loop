@@ -9,7 +9,7 @@
 script = ExtResource("1_1i1gj")
 ropeCount = 2
 ropeLength = 5
-ropeSegmentWidth = 60
+ropeSegmentWidth = 20
 maxSegments = 40
 
 [node name="RopeHolder" type="StaticBody2D" parent="."]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://16boycg427g6"]
+
+[ext_resource type="Texture2D" uid="uid://betofovd3hp00" path="res://components/game_grid/adorable orca cropped.png" id="1_3843k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydb2u"]
+radius = 1.49994
+
+[node name="GridPost" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-1.49994, 0)
+shape = SubResource("CircleShape2D_ydb2u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -4.76837e-07)
+scale = Vector2(0.010067, 0.00928788)
+texture = ExtResource("1_3843k")

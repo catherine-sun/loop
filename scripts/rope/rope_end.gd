@@ -41,14 +41,18 @@ func _physics_process(_delta: float) -> void:
 		var force = direction.normalized() * drag_force_strength
 		apply_central_force(force)
 		distOfLastNewSegment += sqrt(pow(position.x - prev_position_check.x, 2) + pow(position.y - prev_position_check.y, 2) )
-		print(distOfLastNewSegment)
-		if (distOfLastNewSegment > 120):
+		print(distOfLastNewSegment)		
+		if (distOfLastNewSegment > 40):
 			distOfLastNewSegment = 0
 			print("Emitting signal")
-			emit_signal("new_segment_please", id)
+			emit_signal("new_segment_please", id, force)
 		prev_position_check = position
+		
 func setId(i):
 	id = i
+	
+func isDragging():
+	return dragging
 
 func _on_mouse_entered() -> void:
 	if cursor_manager and not cursor_manager.is_holding():
