@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qn7fv84ag5v0"]
 
-[ext_resource type="Texture2D" uid="uid://b8domncyqph8y" path="res://assets/images/ropeSegment.png" id="1_763jl"]
+[ext_resource type="Texture2D" uid="uid://b8domncyqph8y" path="res://assets/images/rope/ropeSegment.png" id="1_763jl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwb40"]
 height = 60.0
@@ -8,6 +8,8 @@ height = 60.0
 [node name="RopeSegment" type="RigidBody2D"]
 rotation = 1.5708
 gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 2.5
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, -9.53674e-07)
