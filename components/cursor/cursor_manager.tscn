@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpkoja8wh7d2y"]
+
+[ext_resource type="Script" uid="uid://cvokxqctb02j" path="res://scripts/cursor/cursor_manager.gd" id="1_7pohg"]
+[ext_resource type="Texture2D" uid="uid://dgbc235ihtdd3" path="res://assets/images/cursor/hand_point.svg" id="1_f6w8e"]
+[ext_resource type="Texture2D" uid="uid://x1gmenwiwxlr" path="res://assets/images/cursor/hand_closed.svg" id="2_lv0x6"]
+[ext_resource type="Texture2D" uid="uid://he1sw85gf3n5" path="res://assets/images/cursor/hand_open.svg" id="3_lv0x6"]
+
+[node name="CursorManager" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_7pohg")
+default = ExtResource("1_f6w8e")
+hover = ExtResource("3_lv0x6")
+hold = ExtResource("2_lv0x6")
