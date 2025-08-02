@@ -1,14 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://bojab61wqp6n0"]
 
-[ext_resource type="PackedScene" uid="uid://cnt15cha1k0tk" path="res://components/rope/rope.tscn" id="1_f8i7t"]
+[ext_resource type="PackedScene" uid="uid://ddved6dvms1nj" path="res://components/rope/rope_generator.tscn" id="1_f8i7t"]
 
 [node name="CrownKnot" type="Node2D"]
 
-[node name="Rope" parent="." instance=ExtResource("1_f8i7t")]
-position = Vector2(7, 8)
+[node name="RopeGenerator" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(109, 239)
+ropeLength = 10
 
-[node name="Rope2" parent="." instance=ExtResource("1_f8i7t")]
-position = Vector2(7, 47)
+[node name="RopeGenerator2" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(109, 289)
+ropeLength = 10
 
-[node name="Rope3" parent="." instance=ExtResource("1_f8i7t")]
-position = Vector2(7, 90)
+[node name="RopeGenerator3" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(109, 342)
+ropeLength = 10

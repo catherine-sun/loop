@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var ropeCount: int
 @export var ropeLength: int
 @export var ropeSegmentWidth: int
 @export var jointStiffness: float
@@ -9,7 +10,7 @@ const ROPE_END = preload("res://components/rope/rope_end.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	addRopes(4) # Replace with function body.
+	addRopes(ropeCount) # Replace with function body.
 
 func addRopes(numRopes):
 	for i in range(numRopes):
@@ -45,7 +46,7 @@ func addRopeSegments(parent):
 		joint.node_b = newRopeSegment.get_path()
 
 		var distance_factor = float(i) / float(ropeLength - 1)
-		joint.softness = jointStiffness * (0.5 + distance_factor * 1.5)
+		joint.softness = jointStiffness * (distance_factor * 1.5)
 		joint.bias = 0.9 - distance_factor * 0.3
 
 		previousSegment = newRopeSegment

@@ -7,12 +7,12 @@
 
 [node name="RopeGenerator" type="Node2D"]
 script = ExtResource("1_1i1gj")
+ropeCount = 1
 ropeLength = 12
 ropeSegmentWidth = 60
-jointStiffness = 0.05
+jointStiffness = 10.0
 
 [node name="RopeHolder" type="StaticBody2D" parent="."]
-position = Vector2(371, 158)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RopeHolder"]
