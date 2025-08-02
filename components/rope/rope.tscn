@@ -83,3 +83,4 @@ node_b = NodePath("../RopeEnd")
 
 [node name="RopeEnd" parent="." instance=ExtResource("3_gkakv")]
 position = Vector2(466, 0)
+drag_linear_damp = 1.0

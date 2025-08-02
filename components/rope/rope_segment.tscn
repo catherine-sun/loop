@@ -8,7 +8,7 @@ height = 60.0
 [node name="RopeSegment" type="RigidBody2D"]
 rotation = 1.5708
 gravity_scale = 0.0
-linear_damp = 5.0
+linear_damp = 3.0
 angular_damp = 2.5
 
 [node name="Icon" type="Sprite2D" parent="."]

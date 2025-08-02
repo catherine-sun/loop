@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhnte0jtkto65"]
+
+[ext_resource type="Texture2D" uid="uid://w3uov6vtui2l" path="res://assets/images/playButton.png" id="1_pj0st"]
+[ext_resource type="Script" uid="uid://ksa30b7ay6op" path="res://scripts/rope/rope_feeder.gd" id="1_psynj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psynj"]
+size = Vector2(265, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om4pu"]
+size = Vector2(264, 11)
+
+[node name="RopeFeeder" type="Node2D"]
+script = ExtResource("1_psynj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="StaticBody2D"]
+light_mask = 2
+position = Vector2(126, -17)
+shape = SubResource("RectangleShape2D_psynj")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(127.125, 15.625)
+scale = Vector2(0.164313, 0.00901846)
+texture = ExtResource("1_pj0st")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(130, 16)
+shape = SubResource("RectangleShape2D_om4pu")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+visible = false
+position = Vector2(126.813, -17)
+scale = Vector2(0.167216, 0.0100671)
+texture = ExtResource("1_pj0st")
