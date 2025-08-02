@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bevq5w7yxgw6p"]
+
+[ext_resource type="Script" uid="uid://c1n5r44o7gvhe" path="res://scripts/main_menu/volume_slider.gd" id="1_3n1vp"]
+
+[node name="VolumeSlider" type="VBoxContainer"]
+script = ExtResource("1_3n1vp")
+slider_label = "Music Volume"
+
+[node name="VolumeLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="SliderContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="VolumeSlider" type="HSlider" parent="SliderContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 70.0
+
+[node name="VolumePercent" type="Label" parent="SliderContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "70%"
+vertical_alignment = 1
+
+[connection signal="value_changed" from="SliderContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

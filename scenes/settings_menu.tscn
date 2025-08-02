@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://ney48blgvwdi"]
+
+[ext_resource type="Script" path="res://scripts/main_menu/settings_menu.gd" id="1_settings"]
+[ext_resource type="PackedScene" uid="uid://bevq5w7yxgw6p" path="res://components/ui/volume_slider.tscn" id="2_volume"]
+
+[node name="SettingsMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="SoundSection" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" parent="MarginContainer/VBoxContainer/SoundSection" instance=ExtResource("2_volume")]
+layout_mode = 2
+
+[node name="SFXVolumeSlider" parent="MarginContainer/VBoxContainer/SoundSection" instance=ExtResource("2_volume")]
+layout_mode = 2
+volume_type = 1
+slider_label = "SFX Volume"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back to Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
