@@ -6,8 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07iwa"]
 size = Vector2(72, 26)
 
-[node name="RopeEnd" type="StaticBody2D"]
+[node name="RopeEnd" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 10.0
+angular_damp = 3.0
 script = ExtResource("2_07iwa")
+drag_force_strength = 4000.0
+drag_linear_damp = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_07iwa")
