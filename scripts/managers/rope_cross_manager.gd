@@ -4,6 +4,11 @@ signal rope_collision(collider, body)
 signal rope_collision_exit(collider, body)
 
 var crosses = {}
+var isActive = false
+var adjacentSegmentLength = 4
+
+var adjacentSteps = range(-adjacentSegmentLength, adjacentSegmentLength+1)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +19,8 @@ func _ready() -> void:
 	init(["1", "2", "3"])
 
 func _on_global_rope_collision(collider, body):
+	if !isActive:
+		return
 	print("Global collision detected with: ", collider, body)
 	print(body)
 	if "RopeSegment" in collider.name and body is RigidBody2D:
@@ -30,11 +37,11 @@ func _on_global_rope_collision(collider, body):
 # TODO: idk why this doesnt work
 func shouldWeAddThisCross(colliderId, bodyId):
 
-	if (colliderId["ropeId"] == bodyId["ropeId"] and abs(colliderId["segmentId"] - bodyId["segmentId"]) < 2):
+	if (colliderId["ropeId"] == bodyId["ropeId"] and abs(colliderId["segmentId"] - bodyId["segmentId"]) < adjacentSegmentLength):
 		return false
 	for cross in crosses[bodyId["ropeId"]]:
-		var toCompareColliders = [0, 1, 2, -1, -2].map(func(x): return adjacentSegment(colliderId, x))
-		var toCompareSegments = [0, 1, 2, -1, -2].map(func(x): return adjacentSegment(bodyId, x))
+		var toCompareColliders = adjacentSteps.map(func(x): return adjacentSegment(colliderId, x))
+		var toCompareSegments = adjacentSteps.map(func(x): return adjacentSegment(bodyId, x))
 		for col in toCompareColliders:
 			for seg in toCompareSegments:
 				if (compareRopeIds(col, cross["collider"]) and compareRopeIds(seg, cross["segment"])):
@@ -45,6 +52,8 @@ func adjacentSegment(bodyId, step):
 	return { "ropeId": bodyId["ropeId"], "segmentId": bodyId["segmentId"] + step }
 	
 func _on_global_rope_collision_exit(collider, body):
+	if !isActive:
+		return
 	print("Global collision detected exit with: ", collider, body)
 
 	if "RopeSegment" in collider.name:
@@ -65,6 +74,7 @@ func init(ropeIds):
 	crosses = {}
 	for i in ropeIds:
 		crosses[i] = []
+	isActive = true
 
 func isInACross(ropeId):
 	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
