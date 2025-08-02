@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ney48blgvwdi"]
 
-[ext_resource type="Script" path="res://scripts/main_menu/settings_menu.gd" id="1_settings"]
+[ext_resource type="Script" uid="uid://c3k44rjxnvu5u" path="res://scripts/main_menu/settings_menu.gd" id="1_settings"]
 [ext_resource type="PackedScene" uid="uid://bevq5w7yxgw6p" path="res://components/ui/volume_slider.tscn" id="2_volume"]
 
 [node name="SettingsMenu" type="PanelContainer"]

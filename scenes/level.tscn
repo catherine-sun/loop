@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://bwtf7jbjbi70b"]
+[gd_scene load_steps=3 format=3 uid="uid://bwtf7jbjbi70b"]
+
+[ext_resource type="PackedScene" uid="uid://bojab61wqp6n0" path="res://components/knots/crown_knot.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://b4ej3ykhdoc56" path="res://components/ui/controls.tscn" id="2_w7c3h"]
 
 [node name="Level" type="Node2D"]
+
+[node name="CrownKnot" parent="." instance=ExtResource("1_2q6dc")]
+position = Vector2(36, 92)
+
+[node name="Controls" parent="." instance=ExtResource("2_w7c3h")]
+offset_left = 944.0
+offset_top = 388.0
+offset_right = 1138.0
+offset_bottom = 616.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 646.0
