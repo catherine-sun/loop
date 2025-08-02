@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cebiat2fmiqcc"]
+
+[ext_resource type="Texture2D" uid="uid://bqv7iqpkleup" path="res://icon.svg" id="1_w21ls"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("1_w21ls")
+
+[node name="Button" type="Button" parent="Sprite2D"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 63.0
+offset_bottom = 64.0
+
+[connection signal="button_down" from="Sprite2D/Button" to="Sprite2D" method="_on_button_button_down"]
+[connection signal="button_up" from="Sprite2D/Button" to="Sprite2D" method="_on_button_button_up"]

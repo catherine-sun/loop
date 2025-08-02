@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bojab61wqp6n0"]
+
+[ext_resource type="PackedScene" uid="uid://cnt15cha1k0tk" path="res://components/rope/rope.tscn" id="1_f8i7t"]
+
+[node name="CrownKnot" type="Node2D"]
+
+[node name="Rope" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(7, 8)
+
+[node name="Rope2" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(7, 47)
+
+[node name="Rope3" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(7, 90)
