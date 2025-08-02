@@ -6,19 +6,20 @@
 [node name="CrownKnot" type="Node2D"]
 
 [node name="RopeGenerator" parent="." instance=ExtResource("1_f8i7t")]
-position = Vector2(-284, 213)
-ropeLength = 10
-ropeId = "1"
+
+position = Vector2(-300, 200)
+ropeLength = 50
 
 [node name="RopeGenerator2" parent="." instance=ExtResource("1_f8i7t")]
-position = Vector2(109, 289)
-ropeLength = 10
-ropeId = "2"
+position = Vector2(-300, 240)
+ropeLength = 50
 
 [node name="RopeGenerator3" parent="." instance=ExtResource("1_f8i7t")]
-position = Vector2(109, 342)
-ropeLength = 10
-ropeId = "3"
+position = Vector2(-300, 280)
+ropeLength = 50
 
 [node name="RopeFeeder" parent="." instance=ExtResource("2_gnsgt")]
-position = Vector2(38, 217)
+position = Vector2(100, 180)
+
+[node name="RopeFeeder2" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(100, 300)

@@ -10,14 +10,15 @@ size = Vector2(72, 26)
 size = Vector2(66, 20)
 
 [node name="RopeEnd" type="RigidBody2D"]
+mass = 0.5
 gravity_scale = 0.0
-linear_damp = 10.0
+linear_damp = 5.0
 angular_damp = 10.0
 script = ExtResource("2_07iwa")
 drag_force_strength = 4000.0
-drag_linear_damp = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 0)
 shape = SubResource("RectangleShape2D_07iwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
@@ -26,9 +27,9 @@ texture = ExtResource("1_07iwa")
 
 [node name="Button" type="Button" parent="CollisionShape2D/Sprite2D"]
 offset_left = -1125.0
-offset_top = -419.0
+offset_top = -419.355
 offset_right = 1125.0
-offset_bottom = 419.0
+offset_bottom = 418.645
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bqv7iqpkleup" path="res://icon.svg" id="2_50km6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aue8v"]
-size = Vector2(20, 177)
+size = Vector2(20, 623)
 
 [node name="RopeGenerator" type="Node2D"]
 script = ExtResource("1_1i1gj")
 ropeCount = 1
-ropeLength = 7
-ropeSegmentWidth = 60
+ropeLength = 20
+ropeSegmentWidth = 20
 jointStiffness = 5.0
 
 [node name="RopeHolder" type="RigidBody2D" parent="."]
@@ -18,7 +18,7 @@ gravity_scale = 0.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RopeHolder"]
-position = Vector2(0, 11.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_aue8v")
 
 [node name="Icon" type="Sprite2D" parent="RopeHolder"]
