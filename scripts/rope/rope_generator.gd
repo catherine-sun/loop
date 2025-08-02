@@ -11,6 +11,8 @@ const ROPE_END = preload("res://components/rope/rope_end.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	addRopes(ropeCount) # Replace with function body.
+	$RopeHolder.collision_layer = 1
+	$RopeHolder.collision_mask = 2
 
 func addRopes(numRopes):
 	for i in range(numRopes):
