@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cbwb6vuavr4aa" path="res://scripts/main_menu/play_button.gd" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://w3uov6vtui2l" path="res://assets/images/playButton.png" id="6_oa1go"]
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="MainMenu" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -63,3 +63,10 @@ theme_override_font_sizes/font_size = 60
 text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/MainMenuItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[connection signal="pressed" from="MarginContainer/MainMenuItems/SettingsButton" to="." method="_on_settings_button_pressed"]
