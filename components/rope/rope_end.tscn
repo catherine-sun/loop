@@ -1,20 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cebiat2fmiqcc"]
+[gd_scene load_steps=4 format=3 uid="uid://cebiat2fmiqcc"]
 
-[ext_resource type="Texture2D" uid="uid://bqv7iqpkleup" path="res://icon.svg" id="1_w21ls"]
+[ext_resource type="Texture2D" uid="uid://d4i8xi6pk30lf" path="res://assets/images/ropeEnd.png" id="1_07iwa"]
 [ext_resource type="Script" uid="uid://cr2dsbj0la5v6" path="res://scripts/rope/rope_end.gd" id="2_07iwa"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07iwa"]
+size = Vector2(72, 26)
 
-[node name="RopeEnd" type="Sprite2D" parent="."]
-position = Vector2(64, 64)
-texture = ExtResource("1_w21ls")
+[node name="RopeEnd" type="StaticBody2D"]
 script = ExtResource("2_07iwa")
 
-[node name="Button" type="Button" parent="RopeEnd"]
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 63.0
-offset_bottom = 64.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_07iwa")
 
-[connection signal="button_down" from="RopeEnd/Button" to="RopeEnd" method="_on_button_button_down"]
-[connection signal="button_up" from="RopeEnd/Button" to="RopeEnd" method="_on_button_button_up"]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(0.032, 0.031)
+texture = ExtResource("1_07iwa")
+
+[node name="Button" type="Button" parent="CollisionShape2D/Sprite2D"]
+offset_left = -1125.0
+offset_top = -419.0
+offset_right = 1125.0
+offset_bottom = 419.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="CollisionShape2D/Sprite2D/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CollisionShape2D/Sprite2D/Button" to="." method="_on_button_button_up"]
