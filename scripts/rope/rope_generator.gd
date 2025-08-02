@@ -30,7 +30,7 @@ func addRopeSegments(parent):
 		var joint = PinJoint2D.new()
 		joint.position = Vector2(pos.x + ropeSegmentWidth * 0.5, pos.y)
 		parent.add_child(joint)
-
+		
 		var newRopeSegment
 		if i == ropeLength - 1:
 			newRopeSegment = ROPE_END.instantiate()
