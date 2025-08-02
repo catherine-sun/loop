@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 CursorManager="*res://components/ui/cursor_manager.tscn"
 AudioManager="*res://scripts/managers/audio_manager.gd"
+RopeManager="*res://scripts/managers/rope_cross_manager.gd"
+LevelManager="*res://scripts/managers/level_manager.gd"
 
 [display]
 
