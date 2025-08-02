@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://h5q412hisc5q"]
+
+[ext_resource type="Script" uid="uid://bhdd62aa7nn4g" path="res://scripts/rope/rope_generator.gd" id="1_1i1gj"]
+[ext_resource type="Texture2D" uid="uid://bqv7iqpkleup" path="res://icon.svg" id="2_50km6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aue8v"]
+
+[node name="RopeGenerator" type="Node2D"]
+script = ExtResource("1_1i1gj")
+ropeLength = 12
+ropeSegmentWidth = 60
+
+[node name="RopeHolder" type="StaticBody2D" parent="."]
+position = Vector2(371, 158)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeHolder"]
+shape = SubResource("RectangleShape2D_aue8v")
+
+[node name="Icon" type="Sprite2D" parent="RopeHolder"]
+position = Vector2(-4.76837e-07, 7.15256e-07)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_50km6")
