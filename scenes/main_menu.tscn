@@ -87,8 +87,8 @@ grow_vertical = 2
 script = ExtResource("1_8ln24")
 
 [node name="TextureRect" type="Sprite2D" parent="."]
-position = Vector2(563.75, 290.5)
-scale = Vector2(0.247604, 0.268889)
+position = Vector2(576.5, 326.75)
+scale = Vector2(0.240208, 0.242037)
 texture = ExtResource("2_tbmy8")
 
 [node name="TitleBookCover" type="Sprite2D" parent="."]

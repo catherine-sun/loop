@@ -5,6 +5,7 @@ extends GridContainer
 @export var gridFont: Font
 @export var level_data: JSON
 
+var grids = []
 # create the level select screen
 func _ready() -> void:
 	var levels = level_data.get_data()
@@ -35,7 +36,7 @@ func _ready() -> void:
 		levelName.add_theme_font_override("font", gridFont)
 		levelName.set("theme_override_colors/font_color", Color.BROWN)
 		levelName.add_theme_constant_override("outline_size", 3)
-		levelName.text = str(i+1) + ". " + level["name"]
+		levelName.text = str(i) + ". " + level["name"]
 		levelName.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		levelName.set("theme_override_font_sizes/font_size", 20)
 		levelName.autowrap_mode = TextServer.AUTOWRAP_WORD
@@ -45,7 +46,11 @@ func _ready() -> void:
 		vbox.add_child(levelBox)
 		vbox.add_child(levelName)
 		add_child(vbox)
+		grids.append(levelBox)
 		i+=1
 		
+func _process(delta: float) -> void:
+	for grid in grids:
+		UiManager.handleScale(grid, Vector2(1,1), Vector2(1.04, 1.04), delta, 0.002)
 func loadLevel(level):
 	LevelManager.startLevel(level)	
