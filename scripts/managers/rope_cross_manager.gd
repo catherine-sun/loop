@@ -23,6 +23,7 @@ func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_Q and hovered_segment and hovered_segment.is_in_cross:
 			print("Q pressed on cross segment: ", hovered_segment.rope_id, " segment ", hovered_segment.segment_id)
+			hovered_segment.toggle_lock()
 
 func set_hovered_segment(segment):
 	hovered_segment = segment
