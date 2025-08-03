@@ -8,19 +8,20 @@
 [node name="Level" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1155.0
-offset_bottom = 650.0
+offset_left = -24.0
+offset_right = 1161.0
+offset_bottom = 751.0
 texture = ExtResource("1_mx8sn")
 expand_mode = 5
 
 [node name="CrownKnot" parent="." instance=ExtResource("1_2q6dc")]
-position = Vector2(36, 92)
+position = Vector2(9, 113)
 
 [node name="Controls" parent="." instance=ExtResource("2_w7c3h")]
-offset_left = 944.0
-offset_top = 388.0
-offset_right = 1138.0
-offset_bottom = 616.0
+offset_left = 932.0
+offset_top = 408.0
+offset_right = 1126.0
+offset_bottom = 693.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 27.0
