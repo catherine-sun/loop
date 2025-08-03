@@ -12,12 +12,20 @@ var lock_icon
 var is_in_cross = false
 var is_hovered = false
 var is_locked = false
+var original_gravity_scale = 0.0
+var original_linear_damp = 2.0
+var original_angular_damp = 8.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	collision_layer = 1
 	collision_mask = 2
 	add_to_group("ropePLEASE")
+
+	# Store original physics properties
+	original_gravity_scale = gravity_scale
+	original_linear_damp = linear_damp
+	original_angular_damp = angular_damp
 
 	controls_ui = get_node("/root/Level/Controls")
 	controls_ui.hide_control_group(controls_ui.ControlGroup.LOCK)
@@ -78,7 +86,7 @@ func _on_area_2d_mouse_entered() -> void:
 	is_hovered = true
 	RopeManager.set_hovered_segment(self)
 
-	if is_in_cross:
+	if is_in_cross or is_locked:
 		if controls_ui:
 			controls_ui.show_control_group(controls_ui.ControlGroup.LOCK)
 
@@ -87,7 +95,7 @@ func _on_area_2d_mouse_exited() -> void:
 	is_hovered = false
 	RopeManager.clear_hovered_segment(self)
 
-	if controls_ui:
+	if is_in_cross or is_locked:
 		controls_ui.hide_control_group(controls_ui.ControlGroup.LOCK)
 
 
@@ -96,4 +104,20 @@ func toggle_lock():
 		is_locked = !is_locked
 		if lock_icon:
 			lock_icon.set_locked(is_locked)
+
+		apply_physics_lock(is_locked)
+
 		print("Segment ", rope_id, ":", segment_id, " lock state: ", "LOCKED" if is_locked else "UNLOCKED")
+
+func apply_physics_lock(locked: bool):
+	if locked:
+		freeze = true
+		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
+		linear_velocity = Vector2.ZERO
+		angular_velocity = 0.0
+	else:
+		freeze = false
+		freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
+
+func is_physics_locked() -> bool:
+	return freeze and is_locked

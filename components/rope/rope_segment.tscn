@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://b5ci4kw7na4vc" path="res://scripts/rope/lock_icon.gd" id="4_d8spu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_763jl"]
-radius = 12.0
-height = 36.0
+radius = 15.0
+height = 38.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwb40"]
 radius = 9.99999
