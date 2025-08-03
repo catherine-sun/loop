@@ -3,6 +3,7 @@ extends RigidBody2D
 @export var drag_force_strength: float
 @export var drag_linear_damp: float
 
+# ===== drag settings =====
 var dragging = false
 var of = Vector2.ZERO
 var viewport_size
@@ -12,13 +13,18 @@ var cursor_manager
 
 var leftFeeder = true
 
+# ===== rope data =====
+var ropeId = ""
+var rope_segments = []
+var current_layer = 0
+
 func getLeftFeeder():
 	return leftFeeder
-	
+
 func setLeftFeeder(v):
 	leftFeeder = v
-	
-	
+
+
 func _ready() -> void:
 	add_to_group("ropePLEASE")
 	size = $CollisionShape2D.shape.size
@@ -43,6 +49,8 @@ func _physics_process(_delta: float) -> void:
 		var force = direction.normalized() * drag_force_strength
 		apply_central_force(force)
 
+# ===== handle dragging =====
+
 func _on_mouse_entered() -> void:
 	if cursor_manager and not cursor_manager.is_holding():
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.HOVER)
@@ -63,3 +71,26 @@ func _on_button_button_up() -> void:
 	linear_damp = original_linear_damp
 	if cursor_manager:
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.DEFAULT)
+
+# ===== handle over/under ====
+
+func _input(event):
+	if dragging and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_W:
+			change_rope_z_index(1)
+		elif event.keycode == KEY_S:
+			change_rope_z_index(-1)
+
+func change_rope_z_index(direction: int):
+	var new_layer = clamp(current_layer + direction, 1, RopeManager.get_rope_count())
+	print("want to change layer of rope #", ropeId, " from layer ", current_layer, " into ", new_layer)
+	RopeManager.swap_rope_layers(ropeId, current_layer, new_layer)
+	current_layer = new_layer
+
+
+func set_rope_data(rope_id: String, segments: Array, layer: int):
+	print("setting rope data")
+	ropeId = rope_id
+	rope_segments = segments
+	rope_segments.append(self)
+	current_layer = layer

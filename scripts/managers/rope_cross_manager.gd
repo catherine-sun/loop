@@ -6,6 +6,7 @@ signal rope_collision_exit(collider, body)
 var crosses = {}
 var isActive = false
 var adjacentSegmentLength = 4
+var ropes = {}  # Dictionary to store ropes by ropeId
 
 var adjacentSteps = range(-adjacentSegmentLength, adjacentSegmentLength+1)
 
@@ -25,8 +26,8 @@ func _on_global_rope_collision(collider, body):
 		if !collider.getLeftFeeder() or !body.getLeftFeeder():
 			return
 
-		var colliderId = collider.getRopeIds()
-		var bodyId = body.getRopeIds()
+		var colliderId = {"ropeId": collider.rope_id, "segmentId": collider.segment_id}
+		var bodyId = {"ropeId": body.rope_id, "segmentId": body.segment_id}
 		var idToAdd = colliderId["ropeId"] if shouldWeAddThisCross(colliderId, bodyId) else null
 		if idToAdd != null:
 			crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId })
@@ -54,8 +55,8 @@ func _on_global_rope_collision_exit(collider, body):
 		return
 
 	if "RopeSegment" in collider.name:
-		var colliderId = collider.getRopeIds()
-		var bodyId = body.getRopeIds()
+		var colliderId = {"ropeId": collider.rope_id, "segmentId": collider.segment_id}
+		var bodyId = {"ropeId": body.rope_id, "segmentId": body.segment_id}
 		var idToAdd = colliderId["ropeId"]
 		if idToAdd:
 			crosses[bodyId["ropeId"]] = crosses[bodyId["ropeId"]].filter(func(x): return !compareRopeIds(x["collider"], colliderId) or !compareRopeIds(x["segment"], bodyId))
@@ -74,17 +75,18 @@ func init(ropeIds):
 
 func pause():
 	isActive = false
-	
-func isInACross(ropeId):
-	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
 
+func isInACross(rope_id, segment):
+	if crosses.has(rope_id):
+		return crosses[rope_id].any(func(x): return x["segment"]["segmentId"] == segment.segment_id)
+	return false
 
 func formatCrossesForKnotDetection():
 	var obj = {}
 	for ropeId in crosses.keys():
 		var crossList = []
-		crosses[ropeId].sort_custom(func(a,b): a["segment"]["segmentId"] < b["segment"]["segmentId"])
 		var crossesForRope = crosses[ropeId]
+		crossesForRope.sort_custom(func(a,b): return a["segment"]["segmentId"] < b["segment"]["segmentId"])
 
 		for cross in crossesForRope:
 			crossList.append({ "rope": cross["collider"]["ropeId"], "position": "over" })
@@ -92,5 +94,56 @@ func formatCrossesForKnotDetection():
 	return obj
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
+
+func getOverlappingRopes():
+	if len(ropes) > 0:
+		var overlappingRopes = []
+		# Get the first rope from the dictionary
+		var first_rope_id = ropes.keys()[0]
+		var rope = ropes[first_rope_id]
+		var _prevSegment = null
+		var _nextSegment = null
+		var segments = rope["segments"]
+		var numSegments = segments.size()
+
+		for i in range(numSegments):
+			_nextSegment = segments[i+1] if i < numSegments - 1 else null
+			_prevSegment = segments[i-1] if i > 0 else null
+			var segment = segments[i]
+			var segmentOverlappingNodes = segment.get_node("Area2D").get_overlapping_bodies().map(func(n): return n.rope_id if "RopeSegment" in n.name and (n.rope_id != segment.rope_id or abs(n.segment_id - segment.segment_id) > 2) else null)
+			segmentOverlappingNodes = segmentOverlappingNodes.filter(func(x): return x != null and x != "")
+			overlappingRopes = overlappingRopes + segmentOverlappingNodes.filter(func(x): return x != null and x != "")
+		return overlappingRopes
+	return []
+
+func get_rope_count():
+	return 3
+
+func swap_rope_layers(rope_id: String, old: int, new: int):
+	var rope_on_target_layer = null
+	var target_rope_id = ""
+
+	for other_id in ropes.keys():
+		if other_id != rope_id and ropes[other_id]["layer"] == new:
+			rope_on_target_layer = ropes[other_id]
+			target_rope_id = other_id
+			break
+
+	if ropes.has(rope_id):
+		ropes[rope_id]["layer"] = new
+		var rope = ropes[rope_id]
+		for segment in rope["segments"]:
+			segment.z_index = new
+		if rope["end"]:
+			rope["end"].z_index = new
+		print(rope_id, " IS NOW ON LAYER ", new)
+
+	if rope_on_target_layer:
+		rope_on_target_layer["layer"] = old
+		for segment in rope_on_target_layer["segments"]:
+			segment.z_index = old
+		if rope_on_target_layer["end"]:
+			rope_on_target_layer["end"].z_index = old
+		print(target_rope_id, " IS NOW ON LAYER ", old)
