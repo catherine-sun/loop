@@ -9,7 +9,7 @@
 [ext_resource type="JSON" path="res://data/levels.json" id="5_chg43"]
 [ext_resource type="FontFile" uid="uid://bprgtwd02a2v" path="res://assets/fonts/ComingSoon-Regular.ttf" id="6_o2xx4"]
 [ext_resource type="Texture2D" uid="uid://c2nb7wbj0yner" path="res://assets/images/icons/back.png" id="7_7plkq"]
-[ext_resource type="Script" uid="uid://s5qki8guq87h" path="res://scripts/level_select/back_button.gd" id="8_ckc44"]
+[ext_resource type="Script" path="res://scripts/level_select/back_button.gd" id="8_ckc44"]
 [ext_resource type="PackedScene" uid="uid://dmn3de62ckbis" path="res://scenes/main_menu.tscn" id="9_ckc44"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6tf7"]
