@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmn3de62ckbis"]
+[gd_scene load_steps=9 format=3 uid="uid://dmn3de62ckbis"]
 
 [ext_resource type="Script" uid="uid://bc0we575yxyvp" path="res://scripts/main_menu/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Texture2D" uid="uid://redo2g24qri4" path="res://assets/images/titlescreen/title_book_cover.png" id="2_oa1go"]
 [ext_resource type="Script" uid="uid://w2ynajci08o3" path="res://scripts/main_menu/main_menu_margin.gd" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="2_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://cy2trr1yvumud" path="res://components/buttons/menu_button.tscn" id="3_oa1go"]
-[ext_resource type="Texture2D" uid="uid://db31eacpikg7g" path="res://assets/images/infinityButton.png" id="4_rtw2f"]
-[ext_resource type="Script" uid="uid://cbwb6vuavr4aa" path="res://scripts/main_menu/play_button.gd" id="5_jk1qb"]
-[ext_resource type="Texture2D" uid="uid://w3uov6vtui2l" path="res://assets/images/playButton.png" id="6_oa1go"]
+[ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="6_oa1go"]
+[ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="7_jk1qb"]
+[ext_resource type="Script" uid="uid://bs2u3t4dpk542" path="res://scenes/texture_button.gd" id="7_tbmy8"]
 
 [node name="MainMenu" type="PanelContainer"]
 anchors_preset = 15
@@ -15,15 +17,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8ln24")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-script = ExtResource("2_rtw2f")
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(563.75, 290.5)
+scale = Vector2(0.247604, 0.268889)
+texture = ExtResource("2_tbmy8")
 
-[node name="MainMenuItems" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 100
+[node name="TitleBookCover" type="Sprite2D" parent="."]
+position = Vector2(559, 329)
+scale = Vector2(0.22625, 0.24287)
+texture = ExtResource("2_oa1go")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MainMenuItems"]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme_override_font_sizes/bold_font_size = 100
 bbcode_enabled = true
@@ -31,42 +35,64 @@ text = "[b]LOOP[/b]"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="MenuOptions" type="HBoxContainer" parent="MarginContainer/MainMenuItems"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 100
+script = ExtResource("2_rtw2f")
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="EndlessButton" parent="MarginContainer/MainMenuItems/MenuOptions" instance=ExtResource("3_oa1go")]
+[node name="PlayButton" parent="MarginContainer/MenuOptions" instance=ExtResource("3_oa1go")]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment_horizontal = 2
-iconTexture = ExtResource("4_rtw2f")
+ratio = 0.9999
+script = null
 
-[node name="Label" type="Label" parent="MarginContainer/MainMenuItems/MenuOptions/EndlessButton"]
+[node name="Button" type="Button" parent="MarginContainer/MenuOptions/PlayButton"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "ENDLESS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PlayButton" parent="MarginContainer/MainMenuItems/MenuOptions" instance=ExtResource("3_oa1go")]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment_horizontal = 0
-script = ExtResource("5_jk1qb")
-iconTexture = ExtResource("6_oa1go")
-
-[node name="Label" type="Label" parent="MarginContainer/MainMenuItems/MenuOptions/PlayButton"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 30
 text = "PLAY"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/MainMenuItems"]
+[node name="AspectRatioContainer2" parent="MarginContainer/MenuOptions" instance=ExtResource("3_oa1go")]
+layout_mode = 2
+script = null
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/MenuOptions/AspectRatioContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Settings"
 
-[connection signal="pressed" from="MarginContainer/MainMenuItems/SettingsButton" to="." method="_on_settings_button_pressed"]
+[node name="CreditsButton" parent="MarginContainer/MenuOptions" instance=ExtResource("3_oa1go")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = null
+
+[node name="Button" type="Button" parent="MarginContainer/MenuOptions/CreditsButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "CREDITS"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_top = 46.0
+offset_right = -56.0
+offset_bottom = 146.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_oa1go")
+texture_pressed = ExtResource("7_jk1qb")
+texture_hover = ExtResource("7_jk1qb")
+stretch_mode = 0
+script = ExtResource("7_tbmy8")
+
+[connection signal="pressed" from="MarginContainer/MenuOptions/PlayButton/Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MenuOptions/AspectRatioContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_quit_button_pressed"]
