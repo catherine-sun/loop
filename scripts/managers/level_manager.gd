@@ -1,5 +1,7 @@
 extends Node
 
+var LEVEL_COMPLETE = preload("res://components/ui/level_complete.tscn")
+
 var currentLevel = null
 var knotsToDetect = []
 var allKnots = {}
@@ -29,10 +31,14 @@ func startLevel(level):
 		n.toggleSegments()
 	
 func endLevel():
+	var completeScreen = LEVEL_COMPLETE.instantiate()
+	get_tree().root.add_child(completeScreen)
+	completeScreen.setKnotName(currentLevel["name"])
 	currentLevel = null
 	knotsToDetect = []
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
+	RopeManager.pause()
+	#get_tree().change_scene_to_packed(LEVEL_COMPLETE)
+	
 func detectLevelOver():
 	var intersections = RopeManager.formatCrossesForKnotDetection()
 	for knot in knotsToDetect:

@@ -1,13 +1,82 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmn3de62ckbis"]
+[gd_scene load_steps=45 format=3 uid="uid://dmn3de62ckbis"]
 
 [ext_resource type="Script" uid="uid://bc0we575yxyvp" path="res://scripts/main_menu/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Texture2D" uid="uid://redo2g24qri4" path="res://assets/images/titlescreen/title_book_cover.png" id="2_oa1go"]
 [ext_resource type="Script" uid="uid://w2ynajci08o3" path="res://scripts/main_menu/main_menu_margin.gd" id="2_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="2_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://cy2trr1yvumud" path="res://components/buttons/menu_button.tscn" id="3_oa1go"]
+[ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="6_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="7_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://dnuxnqrhb46jk" path="res://assets/images/icons/play_hover.png" id="7_lgwnu"]
 [ext_resource type="Script" uid="uid://bs2u3t4dpk542" path="res://scenes/texture_button.gd" id="7_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://bwum1abgpllim" path="res://assets/images/icons/settings_hover.png" id="8_flqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7b55j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pajh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j7ex8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8gd2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hstxw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8egab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gw5y6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svtp6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dfpl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qywvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3wgol"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1acrt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr8o3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1a85y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl5e0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_engjn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6h3lr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dj67d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vcge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ip0br"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyero"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcusk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4puye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q13xq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u43bj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jvjdd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxnar"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eku7s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6nra"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
 
 [node name="MainMenu" type="PanelContainer"]
 anchors_preset = 15
@@ -23,7 +92,7 @@ scale = Vector2(0.247604, 0.268889)
 texture = ExtResource("2_tbmy8")
 
 [node name="TitleBookCover" type="Sprite2D" parent="."]
-position = Vector2(559, 329)
+position = Vector2(559, 327)
 scale = Vector2(0.22625, 0.24287)
 texture = ExtResource("2_oa1go")
 
@@ -53,8 +122,27 @@ script = null
 
 [node name="Button" type="Button" parent="MarginContainer/MenuOptions/PlayButton"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_hover_color = Color(0, 0.90773, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.783434, 0.978529, 0.782347, 1)
+theme_override_colors/icon_normal_color = Color(0.525459, 0.998884, 0.635829, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/line_spacing = 76
+theme_override_fonts/font = ExtResource("6_lgwnu")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ajci")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7b55j")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5pajh")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_j7ex8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_a8gd2")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_hstxw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8egab")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_gw5y6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_svtp6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1dfpl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lgwnu")
 text = "PLAY"
+icon = ExtResource("7_lgwnu")
+alignment = 2
 
 [node name="AspectRatioContainer2" parent="MarginContainer/MenuOptions" instance=ExtResource("3_oa1go")]
 layout_mode = 2
@@ -62,8 +150,26 @@ script = null
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/MenuOptions/AspectRatioContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Settings"
+theme_override_colors/font_hover_color = Color(0.295867, 0.295866, 0.295866, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0.986752, 0.986752, 0.986752, 1)
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("6_lgwnu")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qywvv")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_3wgol")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1acrt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vr8o3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1a85y")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_hl5e0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_engjn")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_6h3lr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dj67d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_6vcge")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
+text = "SETTINGS"
+icon = ExtResource("8_flqon")
+alignment = 2
 
 [node name="CreditsButton" parent="MarginContainer/MenuOptions" instance=ExtResource("3_oa1go")]
 layout_mode = 2
@@ -72,7 +178,19 @@ script = null
 
 [node name="Button" type="Button" parent="MarginContainer/MenuOptions/CreditsButton"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_lgwnu")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ip0br")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_xyero")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tcusk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4puye")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q13xq")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_u43bj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jvjdd")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_yxnar")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eku7s")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_c6nra")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rcqid")
 text = "CREDITS"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

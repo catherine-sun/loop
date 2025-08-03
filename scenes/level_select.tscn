@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0ywpex5a18pv"]
+[gd_scene load_steps=12 format=3 uid="uid://c0ywpex5a18pv"]
 
-[ext_resource type="Script" uid="uid://cdprftqnmibfq" path="res://scripts/level_select/level_select_margin.gd" id="1_rif6e"]
+[ext_resource type="Texture2D" uid="uid://dubymqagjcmby" path="res://assets/images/book/bookRed.png" id="1_r77uv"]
 [ext_resource type="Script" uid="uid://dyuysun3s8irk" path="res://scripts/level_select/level_select_grid.gd" id="2_chg43"]
-[ext_resource type="Texture2D" uid="uid://d0n7nwxjvfvew" path="res://assets/images/alpaca_snatched.png" id="3_r77uv"]
-[ext_resource type="Texture2D" uid="uid://c33kf3r2g6fmd" path="res://assets/images/alpaca_hug.png" id="4_4nqmc"]
+[ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="2_r77uv"]
+[ext_resource type="Texture2D" uid="uid://6jcn5i0bdc0i" path="res://assets/images/knotEncyclopediaIcon.png" id="4_r77uv"]
+[ext_resource type="Texture2D" uid="uid://xar8ytlcp4xp" path="res://assets/images/book/bookYellow.png" id="5_4nqmc"]
 [ext_resource type="JSON" path="res://data/levels.json" id="5_chg43"]
+[ext_resource type="FontFile" uid="uid://bprgtwd02a2v" path="res://assets/fonts/ComingSoon-Regular.ttf" id="6_o2xx4"]
+[ext_resource type="Texture2D" uid="uid://c2nb7wbj0yner" path="res://assets/images/icons/back.png" id="7_7plkq"]
+[ext_resource type="Script" uid="uid://s5qki8guq87h" path="res://scripts/level_select/back_button.gd" id="8_ckc44"]
+[ext_resource type="PackedScene" uid="uid://dmn3de62ckbis" path="res://scenes/main_menu.tscn" id="9_ckc44"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv8in"]
 bg_color = Color(1, 0.847059, 0.886275, 1)
@@ -17,28 +22,76 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sv8in")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-script = ExtResource("1_rif6e")
+[node name="BookRed" type="Sprite2D" parent="."]
+position = Vector2(505, 295)
+scale = Vector2(0.472684, 0.571493)
+texture = ExtResource("1_r77uv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(1, 0, 0.180392, 1)
+[node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 408.0
+offset_bottom = 62.0
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ReferenceRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 242.0
+offset_top = 15.0
+offset_right = 633.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.533272, 0.273959, 0.2344, 1)
+theme_override_fonts/normal_font = ExtResource("2_r77uv")
 theme_override_font_sizes/normal_font_size = 60
 text = "Level Select"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Canvas"]
+offset_left = 385.0
+offset_top = 94.0
+offset_right = 903.0
+offset_bottom = 530.0
+
+[node name="GridContainer" type="GridContainer" parent="Canvas/ReferenceRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 script = ExtResource("2_chg43")
-level_image = ExtResource("3_r77uv")
-level_image_hover = ExtResource("4_4nqmc")
+level_image = ExtResource("4_r77uv")
+level_image_hover = ExtResource("5_4nqmc")
+gridFont = ExtResource("6_o2xx4")
 level_data = ExtResource("5_chg43")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer2"]
+offset_left = 126.0
+offset_top = 89.0
+offset_right = 249.0
+offset_bottom = 176.0
+texture_normal = ExtResource("7_7plkq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_ckc44")
+backScene = ExtResource("9_ckc44")
+
+[connection signal="pressed" from="CanvasLayer2/TextureButton" to="CanvasLayer2/TextureButton" method="_on_pressed"]

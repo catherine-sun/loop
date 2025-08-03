@@ -1,0 +1,98 @@
+[gd_scene load_steps=18 format=3 uid="uid://dlgi4yrpihy67"]
+
+[ext_resource type="Script" uid="uid://c5218qbqydg61" path="res://scripts/level_select/level_complete.gd" id="1_rd3a4"]
+[ext_resource type="PackedScene" uid="uid://c0ywpex5a18pv" path="res://scenes/level_select.tscn" id="2_ejqsn"]
+[ext_resource type="FontFile" uid="uid://bprgtwd02a2v" path="res://assets/fonts/ComingSoon-Regular.ttf" id="2_y3auo"]
+[ext_resource type="Texture2D" uid="uid://d2y0ssxu726gb" path="res://assets/images/book/bookGreen.png" id="3_ejqsn"]
+[ext_resource type="Texture2D" uid="uid://rom6sw5d5411" path="res://assets/images/crownKnotIcon.png" id="3_rd3a4"]
+[ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="4_y3auo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejqsn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shyc6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hh0r7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1ach"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_di26q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw3f4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iinen"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7spo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vfqqv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d57t2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkhw7"]
+
+[node name="LevelComplete" type="Node2D"]
+script = ExtResource("1_rd3a4")
+nextScreen = ExtResource("2_ejqsn")
+
+[node name="BookGreen" type="Sprite2D" parent="."]
+position = Vector2(532, 316)
+scale = Vector2(0.345099, 0.431954)
+texture = ExtResource("3_ejqsn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 508.0
+offset_top = 143.0
+offset_right = 771.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_y3auo")
+theme_override_font_sizes/font_size = 30
+text = "YOU COMPLETED A"
+
+[node name="CrownKnotIcon" type="Sprite2D" parent="."]
+position = Vector2(644, 343)
+scale = Vector2(0.105713, 0.0957031)
+texture = ExtResource("3_rd3a4")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 708.0
+offset_top = 452.0
+offset_right = 836.0
+offset_bottom = 492.0
+theme_override_colors/font_hover_color = Color(0.670095, 0.415673, 0.257469, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_y3auo")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ejqsn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_shyc6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hh0r7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_q1ach")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_di26q")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vw3f4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iinen")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_o7spo")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vfqqv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_d57t2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vkhw7")
+text = "CONTINUE"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = 549.0
+offset_top = 200.0
+offset_right = 719.0
+offset_bottom = 240.0
+
+[node name="KnotName" type="Label" parent="ReferenceRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.770885, 0.43958, 5.77569e-07, 1)
+theme_override_fonts/font = ExtResource("4_y3auo")
+theme_override_font_sizes/font_size = 40
+
+[connection signal="pressed" from="Button" to="." method="_on_continue_button_pressed"]
