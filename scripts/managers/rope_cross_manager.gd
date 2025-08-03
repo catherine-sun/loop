@@ -12,7 +12,6 @@ var adjacentSteps = range(-adjacentSegmentLength, adjacentSegmentLength+1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
 	connect("rope_collision", _on_global_rope_collision)
 	connect("rope_collision_exit", _on_global_rope_collision_exit)
 
@@ -21,17 +20,16 @@ func _ready() -> void:
 func _on_global_rope_collision(collider, body):
 	if !isActive:
 		return
-	print("Global collision detected with: ", collider, body)
-	print(body)
+		
 	if "RopeSegment" in collider.name and body is RigidBody2D:
+		if !collider.getLeftFeeder() or !body.getLeftFeeder():
+			return
+
 		var colliderId = collider.getRopeIds()
 		var bodyId = body.getRopeIds()
-		print(colliderId)
-		print(bodyId)
 		var idToAdd = colliderId["ropeId"] if shouldWeAddThisCross(colliderId, bodyId) else null
 		if idToAdd != null:
 			crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId })
-	print(crosses)
 		
 	
 # TODO: idk why this doesnt work
@@ -54,7 +52,6 @@ func adjacentSegment(bodyId, step):
 func _on_global_rope_collision_exit(collider, body):
 	if !isActive:
 		return
-	print("Global collision detected exit with: ", collider, body)
 
 	if "RopeSegment" in collider.name:
 		var colliderId = collider.getRopeIds()
@@ -62,7 +59,6 @@ func _on_global_rope_collision_exit(collider, body):
 		var idToAdd = colliderId["ropeId"]
 		if idToAdd:
 			crosses[bodyId["ropeId"]] = crosses[bodyId["ropeId"]].filter(func(x): return !compareRopeIds(x["collider"], colliderId) or !compareRopeIds(x["segment"], bodyId))
-	print(crosses)
 
 func comparePairs(a, b):
 	return compareRopeIds(a["collider"], b["collider"]) and compareRopeIds(a["segment"], b["segment"])
@@ -79,6 +75,19 @@ func init(ropeIds):
 func isInACross(ropeId):
 	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
 	
+	
+func formatCrossesForKnotDetection():
+	var obj = {}
+	for ropeId in crosses.keys():
+		var crossList = []
+		crosses[ropeId].sort_custom(func(a,b): a["segment"]["segmentId"] < b["segment"]["segmentId"])
+		var crossesForRope = crosses[ropeId]
+
+		for cross in crossesForRope:
+			crossList.append({ "rope": cross["collider"]["ropeId"], "position": "over" })
+		obj[ropeId] = crossList
+	return obj
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

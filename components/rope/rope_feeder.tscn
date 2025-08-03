@@ -9,6 +9,8 @@ size = Vector2(265, 10)
 script = ExtResource("1_psynj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 129
+collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 light_mask = 2

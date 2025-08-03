@@ -10,7 +10,17 @@ var size
 var original_linear_damp
 var cursor_manager
 
+var leftFeeder = true
+
+func getLeftFeeder():
+	return leftFeeder
+	
+func setLeftFeeder(v):
+	leftFeeder = v
+	
+	
 func _ready() -> void:
+	add_to_group("ropePLEASE")
 	size = $CollisionShape2D.shape.size
 	viewport_size = get_viewport_rect().size
 	original_linear_damp = linear_damp

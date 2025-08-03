@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://bojab61wqp6n0"]
+
+[ext_resource type="PackedScene" uid="uid://ddved6dvms1nj" path="res://components/rope/rope_generator.tscn" id="1_f8i7t"]
+[ext_resource type="PackedScene" uid="uid://bhnte0jtkto65" path="res://components/rope/rope_feeder.tscn" id="2_gnsgt"]
+
+[sub_resource type="GDScript" id="GDScript_gnsgt"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	handleSegmentVisibility(getAllRopeSegments())
+	
+func getAllRopeSegments(node):
+	print(\"Getting rope seg\")
+	var result = []
+	for child in node.get_children():
+		if child.name in \"RopeSegment\" or child.name in \"RopeEnd\": # Or check class
+			result.append(child)
+		result += getAllRopeSegments(child) # Recurse
+	print(\"Got rope seg\")
+	return result
+	
+func handleSegmentVisibility(segs):
+	var overlapping = get_overlapping_bodies()
+	for seg in segs:
+		if overlapping.has(seg):
+			seg.setLeftFeeder(false)
+		else:
+			seg.setLeftGeeder(true)
+			seg.collision_layer = 4
+			seg.collision_mask = 3			
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	print(body.name + \"has entered\")
+
+
+func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	print(body.name + \"has exited\")
+	if \"RopeSegment\" in body.name or \"RopeEnd\" in body.name:
+		body.collision_layer = 3
+		body.collision_mask = 4
+		if \"RopeSegment\" in body.name:
+			body.setLeftFeeder(true)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wpv7"]
+size = Vector2(644, 123)
+
+[node name="CrownKnot" type="Node2D"]
+
+[node name="RopeGenerator" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(-300, 200)
+ropeLength = 50
+ropeId = "1"
+
+[node name="RopeGenerator2" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(-300, 240)
+ropeLength = 50
+ropeId = "2"
+
+[node name="RopeGenerator3" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(-300, 280)
+ropeLength = 50
+ropeId = "3"
+
+[node name="RopeFeeder" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(100, 180)
+
+[node name="RopeFeeder2" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(100, 300)
+
+[node name="RopeFeederProtectionZone" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -3)
+collision_mask = 2
+script = SubResource("GDScript_gnsgt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeFeederProtectionZone"]
+position = Vector2(-62, 241.5)
+shape = SubResource("RectangleShape2D_3wpv7")
+debug_color = Color(0.409841, 0.593897, 0.357056, 0.42)
+
+[connection signal="body_shape_entered" from="RopeFeederProtectionZone" to="RopeFeederProtectionZone" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="RopeFeederProtectionZone" to="RopeFeederProtectionZone" method="_on_body_shape_exited"]
