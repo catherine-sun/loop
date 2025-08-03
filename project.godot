@@ -22,6 +22,7 @@ AudioManager="*res://scripts/managers/audio_manager.gd"
 RopeManager="*res://scripts/managers/rope_cross_manager.gd"
 LevelManager="*res://scripts/managers/level_manager.gd"
 KnotDetection="*res://scripts/logic/knot_detection.gd"
+UiManager="*res://scripts/managers/ui_manager.gd"
 
 [display]
 

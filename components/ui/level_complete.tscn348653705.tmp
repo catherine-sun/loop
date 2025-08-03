@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlgi4yrpihy67"]
+[gd_scene load_steps=18 format=3 uid="uid://dlgi4yrpihy67"]
 
 [ext_resource type="Script" uid="uid://c5218qbqydg61" path="res://scripts/level_select/level_complete.gd" id="1_rd3a4"]
 [ext_resource type="PackedScene" uid="uid://c0ywpex5a18pv" path="res://scenes/level_select.tscn" id="2_ejqsn"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d2y0ssxu726gb" path="res://assets/images/book/bookGreen.png" id="3_ejqsn"]
 [ext_resource type="Texture2D" uid="uid://rom6sw5d5411" path="res://assets/images/crownKnotIcon.png" id="3_rd3a4"]
 [ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="4_y3auo"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olsq5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejqsn"]
 
@@ -35,48 +33,33 @@
 script = ExtResource("1_rd3a4")
 nextScreen = ExtResource("2_ejqsn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
-offset = Vector2(400, 300)
-transform = Transform2D(1, 0, 0, 1, 400, 300)
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_right = 0.063
-anchor_bottom = 0.031
-offset_left = -315.0
-offset_top = -350.0
-offset_right = 591.424
-offset_bottom = 366.912
-theme_override_styles/panel = SubResource("StyleBoxEmpty_olsq5")
-
-[node name="Modal" type="Sprite2D" parent="CanvasLayer/PanelContainer"]
-position = Vector2(405, 365)
-scale = Vector2(0.393604, 0.431954)
+[node name="Modal" type="Sprite2D" parent="."]
+position = Vector2(532, 316)
+scale = Vector2(0.345099, 0.431954)
 texture = ExtResource("3_ejqsn")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 54.0
-offset_top = -153.0
-offset_right = 317.0
-offset_bottom = -107.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Label" type="Label" parent="."]
+offset_left = 508.0
+offset_top = 143.0
+offset_right = 771.0
+offset_bottom = 189.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_y3auo")
 theme_override_font_sizes/font_size = 30
 text = "YOU COMPLETED A"
 
-[node name="KnotIcon" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(190, 47)
+[node name="KnotIcon" type="Sprite2D" parent="."]
+position = Vector2(644, 343)
 scale = Vector2(0.105713, 0.0957031)
 texture = ExtResource("3_rd3a4")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 254.0
-offset_top = 156.0
-offset_right = 382.0
-offset_bottom = 196.0
-
+[node name="Button" type="Button" parent="."]
+offset_left = 708.0
+offset_top = 452.0
+offset_right = 836.0
+offset_bottom = 492.0
 theme_override_colors/font_hover_color = Color(0.670095, 0.415673, 0.257469, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_y3auo")
@@ -94,14 +77,13 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_d57t2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vkhw7")
 text = "CONTINUE"
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer"]
-offset_left = 95.0
-offset_top = -96.0
-offset_right = 265.0
-offset_bottom = -56.0
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = 549.0
+offset_top = 200.0
+offset_right = 719.0
+offset_bottom = 240.0
 
-[node name="KnotName" type="Label" parent="CanvasLayer/ReferenceRect"]
-
+[node name="KnotName" type="Label" parent="ReferenceRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,5 +95,4 @@ theme_override_colors/font_color = Color(0.770885, 0.43958, 5.77569e-07, 1)
 theme_override_fonts/font = ExtResource("4_y3auo")
 theme_override_font_sizes/font_size = 40
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_continue_button_pressed"]
-
+[connection signal="pressed" from="Button" to="." method="_on_continue_button_pressed"]

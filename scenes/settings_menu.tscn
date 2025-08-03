@@ -1,23 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://ney48blgvwdi"]
+[gd_scene load_steps=8 format=3 uid="uid://ney48blgvwdi"]
 
-[ext_resource type="Script" path="res://scripts/main_menu/settings_menu.gd" id="1_settings"]
+[ext_resource type="Script" uid="uid://c3k44rjxnvu5u" path="res://scripts/main_menu/settings_menu.gd" id="1_settings"]
+[ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="2_bgjg7"]
+[ext_resource type="Texture2D" uid="uid://d1bv4m08m0jsp" path="res://assets/images/titlescreen/title_book_back.png" id="2_lwwgp"]
 [ext_resource type="PackedScene" uid="uid://bevq5w7yxgw6p" path="res://components/ui/volume_slider.tscn" id="2_volume"]
-[ext_resource type="Texture2D" uid="uid://redo2g24qri4" path="res://assets/images/titlescreen/title_book_cover.png" id="3_wswnh"]
+[ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="3_labj1"]
+[ext_resource type="Texture2D" uid="uid://c2nb7wbj0yner" path="res://assets/images/icons/back.png" id="5_bgjg7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_labj1"]
 
 [node name="SettingsMenu" type="PanelContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 215.0
-offset_top = 4.0
+anchors_preset = -1
+anchor_left = 0.414063
+anchor_top = 0.5
+anchor_right = 0.449653
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -322.0
+offset_right = 240.0
+offset_bottom = 322.0
+
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_labj1")
 script = ExtResource("1_settings")
+metadata/_edit_use_anchors_ = true
+
+[node name="RedBg" type="Sprite2D" parent="."]
+position = Vector2(341.5, 322.5)
+scale = Vector2(0.240208, 0.241111)
+texture = ExtResource("2_bgjg7")
+
+[node name="TitleBookBack" type="Sprite2D" parent="."]
+position = Vector2(298.187, 326)
+scale = Vector2(0.210755, 0.247037)
+texture = ExtResource("2_lwwgp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
@@ -26,8 +49,9 @@ layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 50
 text = "Settings"
 horizontal_alignment = 1
 
@@ -37,9 +61,9 @@ theme_override_constants/separation = 20
 
 [node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundSection"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_labj1")
+theme_override_font_sizes/font_size = 35
 text = "Sound"
-horizontal_alignment = 1
 
 [node name="MusicVolumeSlider" parent="MarginContainer/VBoxContainer/SoundSection" instance=ExtResource("2_volume")]
 layout_mode = 2
@@ -49,14 +73,26 @@ layout_mode = 2
 volume_type = 1
 slider_label = "SFX Volume"
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Back to Main Menu"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TitleBookCover" type="Sprite2D" parent="."]
-position = Vector2(-1786.5, -298.75)
-scale = Vector2(0.232708, 0.245741)
-texture = ExtResource("3_wswnh")
+[node name="BackMenu" type="TextureButton" parent="CanvasLayer"]
+offset_left = 19.0
+offset_top = 132.0
+offset_right = 153.0
+offset_bottom = 253.0
+texture_normal = ExtResource("5_bgjg7")
+ignore_texture_size = true
+stretch_mode = 0
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 29.0
+offset_right = 153.0
+offset_bottom = 129.0
+disabled = true
+texture_normal = ExtResource("5_bgjg7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="CanvasLayer/BackMenu" to="." method="_on_back_button_pressed"]
+

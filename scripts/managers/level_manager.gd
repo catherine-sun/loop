@@ -30,8 +30,9 @@ func startLevel(level):
 		print(n, "I s a protec zone")
 		n.toggleSegments()
 	
+var completeScreen = LEVEL_COMPLETE.instantiate()
 func endLevel():
-	var completeScreen = LEVEL_COMPLETE.instantiate()
+
 	get_tree().root.add_child(completeScreen)
 	completeScreen.setKnotName(currentLevel["name"])
 	currentLevel = null
@@ -47,7 +48,9 @@ func detectLevelOver():
 			print("WE CREATED A KNOT")
 			endLevel()
 
-
+func removeLevelComplete():
+	get_tree().root.remove_child(completeScreen)
+	
 func read_json_file(path: String) -> Dictionary:
 	var file = FileAccess.open(path, FileAccess.READ)
 	if file:
