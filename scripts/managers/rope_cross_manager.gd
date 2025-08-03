@@ -122,28 +122,22 @@ func get_rope_count():
 	return 3
 
 func swap_rope_layers(rope_id: String, old: int, new: int):
-	var rope_on_target_layer = null
-	var target_rope_id = ""
+	if old == new:
+		return
 
 	for other_id in ropes.keys():
 		if other_id != rope_id and ropes[other_id]["layer"] == new:
-			rope_on_target_layer = ropes[other_id]
-			target_rope_id = other_id
+			ropes[other_id]["layer"] = old
+			for segment in ropes[other_id]["segments"]:
+				segment.get_node("Area2D").z_index = old
+			if ropes[other_id]["end"]:
+				ropes[other_id]["end"].z_index = old
 			break
 
 	if ropes.has(rope_id):
 		ropes[rope_id]["layer"] = new
 		var rope = ropes[rope_id]
 		for segment in rope["segments"]:
-			segment.z_index = new
+			segment.get_node("Area2D").z_index = new
 		if rope["end"]:
 			rope["end"].z_index = new
-		print(rope_id, " IS NOW ON LAYER ", new)
-
-	if rope_on_target_layer:
-		rope_on_target_layer["layer"] = old
-		for segment in rope_on_target_layer["segments"]:
-			segment.z_index = old
-		if rope_on_target_layer["end"]:
-			rope_on_target_layer["end"].z_index = old
-		print(target_rope_id, " IS NOW ON LAYER ", old)

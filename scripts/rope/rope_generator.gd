@@ -69,7 +69,7 @@ func addRopeSegments(rope):
 		rope["joints"].append(joint)
 
 	if rope["end"]:
-		rope["end"].set_rope_data(ropeId, rope["segments"], rope.layer)
+		rope["end"].set_rope_data(ropeId, rope["segments"])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

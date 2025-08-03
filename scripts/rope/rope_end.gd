@@ -12,11 +12,11 @@ var original_linear_damp
 var cursor_manager
 
 var leftFeeder = true
+var controls_ui
 
 # ===== rope data =====
 var ropeId = ""
 var rope_segments = []
-var current_layer = 0
 
 func getLeftFeeder():
 	return leftFeeder
@@ -32,6 +32,8 @@ func _ready() -> void:
 	original_linear_damp = linear_damp
 
 	cursor_manager = get_node("/root/CursorManager") # Alternative path
+	controls_ui = get_node("/root/Level/Controls") # Get controls UI reference
+	controls_ui.hide_control_group(controls_ui.ControlGroup.UPDOWN)
 
 	var button = $CollisionShape2D/Sprite2D/Button
 	button.mouse_entered.connect(_on_mouse_entered)
@@ -65,12 +67,16 @@ func _on_button_button_down() -> void:
 	linear_damp = drag_linear_damp
 	if cursor_manager:
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.HOLD)
+	if controls_ui:
+		controls_ui.show_control_group(controls_ui.ControlGroup.UPDOWN)
 
 func _on_button_button_up() -> void:
 	dragging = false
 	linear_damp = original_linear_damp
 	if cursor_manager:
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.DEFAULT)
+	if controls_ui:
+		controls_ui.hide_control_group(controls_ui.ControlGroup.UPDOWN)
 
 # ===== handle over/under ====
 
@@ -82,15 +88,12 @@ func _input(event):
 			change_rope_z_index(-1)
 
 func change_rope_z_index(direction: int):
+	var current_layer = RopeManager.ropes[ropeId]["layer"]
 	var new_layer = clamp(current_layer + direction, 1, RopeManager.get_rope_count())
-	print("want to change layer of rope #", ropeId, " from layer ", current_layer, " into ", new_layer)
 	RopeManager.swap_rope_layers(ropeId, current_layer, new_layer)
-	current_layer = new_layer
 
-
-func set_rope_data(rope_id: String, segments: Array, layer: int):
+func set_rope_data(rope_id: String, segments: Array):
 	print("setting rope data")
 	ropeId = rope_id
 	rope_segments = segments
 	rope_segments.append(self)
-	current_layer = layer
