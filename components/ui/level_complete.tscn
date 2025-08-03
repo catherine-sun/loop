@@ -60,7 +60,6 @@ offset_left = 54.0
 offset_top = -153.0
 offset_right = 317.0
 offset_bottom = -107.0
-
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_y3auo")
 theme_override_font_sizes/font_size = 30
@@ -76,7 +75,6 @@ offset_left = 254.0
 offset_top = 156.0
 offset_right = 382.0
 offset_bottom = 196.0
-
 theme_override_colors/font_hover_color = Color(0.670095, 0.415673, 0.257469, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_y3auo")
@@ -101,7 +99,6 @@ offset_right = 265.0
 offset_bottom = -56.0
 
 [node name="KnotName" type="Label" parent="CanvasLayer/ReferenceRect"]
-
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,4 +111,3 @@ theme_override_fonts/font = ExtResource("4_y3auo")
 theme_override_font_sizes/font_size = 40
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_continue_button_pressed"]
-

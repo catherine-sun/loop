@@ -47,9 +47,11 @@ func _on_global_rope_collision(collider, body):
 
 		var colliderId = {"ropeId": collider.rope_id, "segmentId": collider.segment_id}
 		var bodyId = {"ropeId": body.rope_id, "segmentId": body.segment_id}
-		var idToAdd = colliderId["ropeId"] if shouldWeAddThisCross(colliderId, bodyId) else null
-		if idToAdd != null:
-			crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId })
+		var idToAdd = colliderId["ropeId"] #if shouldWeAddThisCross(colliderId, bodyId) else null
+		if idToAdd != null and shouldWeAddThisCross(colliderId, bodyId):
+			var equivalentCrosses = getSimilarCrosses(colliderId, bodyId, adjacentSteps)
+			crosses[bodyId["ropeId"]] = crosses[bodyId["ropeId"]].filter(func(x): return !equivalentCrosses.any(func(y): return x == y))
+			crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId, "colliderNode": collider, "segmentNode": body  })
 
 
 # TODO: idk why this doesnt work
@@ -57,14 +59,19 @@ func shouldWeAddThisCross(colliderId, bodyId):
 
 	if (colliderId["ropeId"] == bodyId["ropeId"] and abs(colliderId["segmentId"] - bodyId["segmentId"]) < adjacentSegmentLength):
 		return false
+	return true
+	
+func getSimilarCrosses(colliderId, bodyId, steps):
+		
+	var equivCrosses = []
 	for cross in crosses[bodyId["ropeId"]]:
-		var toCompareColliders = adjacentSteps.map(func(x): return adjacentSegment(colliderId, x))
-		var toCompareSegments = adjacentSteps.map(func(x): return adjacentSegment(bodyId, x))
+		var toCompareColliders = steps.map(func(x): return adjacentSegment(colliderId, x))
+		var toCompareSegments = steps.map(func(x): return adjacentSegment(bodyId, x))
 		for col in toCompareColliders:
 			for seg in toCompareSegments:
 				if (compareRopeIds(col, cross["collider"]) and compareRopeIds(seg, cross["segment"])):
-					return false
-	return true
+					equivCrosses.append(cross)
+	return equivCrosses
 
 func adjacentSegment(bodyId, step):
 	return { "ropeId": bodyId["ropeId"], "segmentId": bodyId["segmentId"] + step }
@@ -110,7 +117,12 @@ func formatCrossesForKnotDetection():
 		crossesForRope.sort_custom(func(a,b): return a["segment"]["segmentId"] < b["segment"]["segmentId"])
 
 		for cross in crossesForRope:
-			crossList.append({ "rope": cross["collider"]["ropeId"], "position": "over" })
+			var adjacentCrosses = getSimilarCrosses(cross["collider"], cross["segment"], range(-6,1))
+			var numOver = len( adjacentCrosses.filter(func(c): return c["colliderNode"].get_node("Area2D").z_index >  c["segmentNode"].get_node("Area2D").z_index))
+			var numUnder = len( adjacentCrosses.filter(func(c): return c["colliderNode"].get_node("Area2D").z_index <  c["segmentNode"].get_node("Area2D").z_index))
+
+			var crossPosition = "over" if numOver > numUnder else "under"
+			crossList.append({ "rope": cross["collider"]["ropeId"], "position": crossPosition })
 		obj[ropeId] = crossList
 	return obj
 

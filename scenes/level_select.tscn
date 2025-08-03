@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="1_htctk"]
 [ext_resource type="Texture2D" uid="uid://c3skmqydsqmmh" path="res://assets/images/titlescreen/title_book_open.png" id="1_o2xx4"]
-
 [ext_resource type="Script" uid="uid://dyuysun3s8irk" path="res://scripts/level_select/level_select_grid.gd" id="2_chg43"]
 [ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="2_r77uv"]
 [ext_resource type="Texture2D" uid="uid://6jcn5i0bdc0i" path="res://assets/images/knotEncyclopediaIcon.png" id="4_r77uv"]
@@ -29,7 +28,6 @@ position = Vector2(1333, 891)
 scale = Vector2(0.613125, 0.660185)
 texture = ExtResource("1_o2xx4")
 
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer"]
@@ -37,7 +35,6 @@ offset_left = 19.0
 offset_top = 1.0
 offset_right = 421.0
 offset_bottom = 55.0
-
 size_flags_horizontal = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ReferenceRect"]
@@ -51,7 +48,6 @@ offset_left = 85.0
 offset_top = 19.0
 offset_right = 558.0
 offset_bottom = 80.0
-
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.533272, 0.273959, 0.2344, 1)
@@ -68,17 +64,14 @@ offset_top = 129.0
 offset_right = 1061.0
 offset_bottom = 596.0
 
-
 [node name="GridContainer" type="GridContainer" parent="Canvas/ReferenceRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-
 offset_top = 7.0
 offset_right = 14.0
 offset_bottom = 6.0
-
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -98,7 +91,6 @@ offset_left = 49.0
 offset_top = 169.0
 offset_right = 213.0
 offset_bottom = 281.0
-
 texture_normal = ExtResource("7_7plkq")
 ignore_texture_size = true
 stretch_mode = 0

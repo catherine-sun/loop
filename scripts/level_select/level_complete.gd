@@ -42,4 +42,3 @@ func _on_continue_button_pressed() -> void:
 	get_tree().change_scene_to_packed(nextScreen)
 	$CanvasLayer.scale = Vector2(0.8,0.8)
 	LevelManager.removeLevelComplete()
-

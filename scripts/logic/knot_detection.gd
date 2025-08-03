@@ -103,7 +103,9 @@ var knotTemp =  {
 }
 
 func detect_knot(intersections, knot):
-
+	
+	#print("WANT TO DETECT", intersections)
+	#print("FROM KNOT", knot)
 	var numRopes = knot["numRopes"]
 	var crosses = knot["crosses"]
 

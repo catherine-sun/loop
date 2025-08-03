@@ -36,7 +36,7 @@
 		{ "rope": "3", "position": "under" }
 	  ],
 	  "3": [
-		{ "rope": "2", "position": "over" },
+		{ "rope": "2", "position": "under" },
 		{ "rope": "2", "position": "over" }
 	  ]
 	}

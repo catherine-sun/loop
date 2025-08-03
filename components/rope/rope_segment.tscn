@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b8domncyqph8y" path="res://assets/images/rope/ropeSegment.png" id="1_763jl"]
 [ext_resource type="Script" uid="uid://d38sc03yc1a8x" path="res://scripts/rope/rope_segment.gd" id="1_p15dj"]
 [ext_resource type="Texture2D" uid="uid://c26m16o43r42b" path="res://assets/images/lock_open.png" id="3_vm2fs"]
-[ext_resource type="Script" uid="uid://b5ci4kw7na4vc" path="res://scripts/rope/lock_icon.gd" id="4_d8spu"]
+[ext_resource type="Script" path="res://scripts/rope/lock_icon.gd" id="4_d8spu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_763jl"]
 radius = 15.0
