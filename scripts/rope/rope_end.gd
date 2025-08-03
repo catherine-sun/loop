@@ -3,6 +3,7 @@ extends RigidBody2D
 @export var drag_force_strength: float
 @export var drag_linear_damp: float
 
+# ===== drag settings =====
 var dragging = false
 var of = Vector2.ZERO
 var viewport_size
@@ -11,21 +12,28 @@ var original_linear_damp
 var cursor_manager
 
 var leftFeeder = true
+var controls_ui
+
+# ===== rope data =====
+var ropeId = ""
+var rope_segments = []
 
 func getLeftFeeder():
 	return leftFeeder
-	
+
 func setLeftFeeder(v):
 	leftFeeder = v
-	
-	
+
+
 func _ready() -> void:
 	add_to_group("ropePLEASE")
 	size = $CollisionShape2D.shape.size
 	viewport_size = get_viewport_rect().size
 	original_linear_damp = linear_damp
 
-	cursor_manager = get_node("/root/CursorManager") # Alternative path
+	cursor_manager = get_node("/root/CursorManager")
+	controls_ui = get_node("/root/Level/Controls")
+	controls_ui.hide_control_group(controls_ui.ControlGroup.UPDOWN)
 
 	var button = $CollisionShape2D/Sprite2D/Button
 	button.mouse_entered.connect(_on_mouse_entered)
@@ -43,6 +51,8 @@ func _physics_process(_delta: float) -> void:
 		var force = direction.normalized() * drag_force_strength
 		apply_central_force(force)
 
+# ===== handle dragging =====
+
 func _on_mouse_entered() -> void:
 	if cursor_manager and not cursor_manager.is_holding():
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.HOVER)
@@ -57,9 +67,33 @@ func _on_button_button_down() -> void:
 	linear_damp = drag_linear_damp
 	if cursor_manager:
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.HOLD)
+	if controls_ui:
+		controls_ui.show_control_group(controls_ui.ControlGroup.UPDOWN)
 
 func _on_button_button_up() -> void:
 	dragging = false
 	linear_damp = original_linear_damp
 	if cursor_manager:
 		cursor_manager.set_state(cursor_manager.CURSOR_STATE.DEFAULT)
+	if controls_ui:
+		controls_ui.hide_control_group(controls_ui.ControlGroup.UPDOWN)
+
+# ===== handle over/under ====
+
+func _input(event):
+	if dragging and event is InputEventKey and event.pressed:
+		if event.keycode == KEY_W:
+			change_rope_z_index(1)
+		elif event.keycode == KEY_S:
+			change_rope_z_index(-1)
+
+func change_rope_z_index(direction: int):
+	var current_layer = RopeManager.ropes[ropeId]["layer"]
+	var new_layer = clamp(current_layer + direction, 1, RopeManager.get_rope_count())
+	RopeManager.swap_rope_layers(ropeId, current_layer, new_layer)
+
+func set_rope_data(rope_id: String, segments: Array):
+	print("setting rope data")
+	ropeId = rope_id
+	rope_segments = segments
+	rope_segments.append(self)

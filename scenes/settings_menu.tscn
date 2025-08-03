@@ -19,6 +19,7 @@ offset_left = -239.0
 offset_top = -322.0
 offset_right = 240.0
 offset_bottom = 322.0
+
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
@@ -94,3 +95,4 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [connection signal="pressed" from="CanvasLayer/BackMenu" to="." method="_on_back_button_pressed"]
+

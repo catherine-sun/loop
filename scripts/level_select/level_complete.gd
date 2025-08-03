@@ -13,6 +13,7 @@ func _ready() -> void:
 	maxScale = $CanvasLayer/KnotIcon.scale + Vector2(0.02,0.02)
 	minScale = $CanvasLayer/KnotIcon.scale
 	$CanvasLayer.scale = Vector2(0.8,0.8)
+
 	pass # Replace with function body.
 
 
@@ -36,7 +37,9 @@ func setKnotName(name):
 	$CanvasLayer/ReferenceRect/KnotName.text = name
 
 
+
 func _on_continue_button_pressed() -> void:
 	get_tree().change_scene_to_packed(nextScreen)
 	$CanvasLayer.scale = Vector2(0.8,0.8)
 	LevelManager.removeLevelComplete()
+

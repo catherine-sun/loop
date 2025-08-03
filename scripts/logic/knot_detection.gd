@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-var ignoreOverUnder = true
+var ignoreOverUnder = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,10 +71,10 @@ takes in input like:
 		{ "rope": 1, "position": "over" },
 		{ "rope": 1, "position": "under" }
 	]
-	
+
 }
-	
-	
+
+
 """
 
 var knotTemp =  {
@@ -101,15 +101,15 @@ var knotTemp =  {
 	]
   }
 }
-	
+
 func detect_knot(intersections, knot):
 
 	var numRopes = knot["numRopes"]
 	var crosses = knot["crosses"]
-	
-	
+
+
 	var origRopeKeys = range(1, numRopes + 1).map(func(x): return str(x))
-	
+
 	var isKnot = false
 	for permutation in allPermutations[str(int(numRopes))]:
 		var ropeKeyAssignment = permutationToKeyAssignment(permutation, origRopeKeys)
@@ -117,22 +117,18 @@ func detect_knot(intersections, knot):
 			print("YAY MATCH!")
 			isKnot = true
 			break
-		
+
 	return isKnot
-	
+
 func permutationToKeyAssignment(p, orig):
 	var l = len(p)
 	var h = {}
 	for i in range(l):
 		h[orig[i]] = p[i]
-		
+
 	return h
-		
+
 func isRopeMatch(ropeKeyAssignment, crosses, correctCrosses, ropeKeys):
-	#print(ropeKeyAssignment)
-	#print("Given", crosses)
-	#print("Correct", correctCrosses)
-	#print(ropeKeys)
 	for ropeKey in ropeKeys:
 		var crossList = crosses[ropeKeyAssignment[ropeKey]]
 		var correctCrossList = correctCrosses[ropeKey]
@@ -141,10 +137,8 @@ func isRopeMatch(ropeKeyAssignment, crosses, correctCrosses, ropeKeys):
 				var idx = str(int(i + 1))
 				if (ropeKeyAssignment[crossList[i]["rope"]] == correctCrossList[i]["rope"] and (ignoreOverUnder or crossList[i]["position"] == correctCrossList[i]["position"])):
 					continue
-					#print("Matched " + str(correctCrossList[i]))
 				else:
-					#print("NOT A MATCH, got " + str(crossList[i]) + " when comparing it with " + str(correctCrossList[i]))
 					return false
 		else:
 			return false
-	return true 	
+	return true

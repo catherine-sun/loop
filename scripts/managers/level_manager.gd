@@ -32,6 +32,7 @@ func startLevel(level):
 	
 var completeScreen = LEVEL_COMPLETE.instantiate()
 func endLevel():
+
 	get_tree().root.add_child(completeScreen)
 	completeScreen.setKnotName(currentLevel["name"])
 	currentLevel = null

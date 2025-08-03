@@ -9,13 +9,11 @@ var grids = []
 # create the level select screen
 func _ready() -> void:
 	var levels = level_data.get_data()
-	print(levels)
-	print(levels["levels"])
-	
+
 	var i = 1
 	var numLevels = levels["levels"].size()
 	for level in levels["levels"]:
-		
+
 		var vbox = VBoxContainer.new()
 		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -37,6 +35,7 @@ func _ready() -> void:
 		levelName.set("theme_override_colors/font_color", Color.BROWN)
 		levelName.add_theme_constant_override("outline_size", 3)
 		levelName.text = str(i) + ". " + level["name"]
+
 		levelName.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		levelName.set("theme_override_font_sizes/font_size", 20)
 		levelName.autowrap_mode = TextServer.AUTOWRAP_WORD
@@ -52,5 +51,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for grid in grids:
 		UiManager.handleScale(grid, Vector2(1,1), Vector2(1.04, 1.04), delta, 0.002)
+
 func loadLevel(level):
-	LevelManager.startLevel(level)	
+	LevelManager.startLevel(level)
