@@ -8,13 +8,11 @@ extends GridContainer
 # create the level select screen
 func _ready() -> void:
 	var levels = level_data.get_data()
-	print(levels)
-	print(levels["levels"])
-	
+
 	var i = 1
 	var numLevels = levels["levels"].size()
 	for level in levels["levels"]:
-		
+
 		var vbox = VBoxContainer.new()
 		vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -46,6 +44,6 @@ func _ready() -> void:
 		vbox.add_child(levelName)
 		add_child(vbox)
 		i+=1
-		
+
 func loadLevel(level):
-	LevelManager.startLevel(level)	
+	LevelManager.startLevel(level)
