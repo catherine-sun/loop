@@ -12,6 +12,8 @@ var lock_icon
 var is_in_cross = false
 var is_hovered = false
 var is_locked = false
+var last_visual_state = ""
+
 var original_gravity_scale = 0.0
 var original_linear_damp = 2.0
 var original_angular_damp = 8.0
@@ -29,6 +31,7 @@ func _ready() -> void:
 
 	controls_ui = get_node("/root/Level/Controls")
 	controls_ui.hide_control_group(controls_ui.ControlGroup.LOCK)
+	controls_ui.hide_control_group(controls_ui.ControlGroup.UNLOCK)
 
 	lock_icon = get_node("LockIcon")
 	if lock_icon:
@@ -42,16 +45,21 @@ func _process(_delta: float) -> void:
 	lock_icon.visible = is_locked
 	if is_in_cross:
 		if is_locked:
+			last_visual_state = "locked"
 			get_node("Area2D/Icon").modulate = Color(1, 0, 0) # Red
 		elif is_hovered:
 			lock_icon.visible = true
+			last_visual_state = "cross_hovered"
 			get_node("Area2D/Icon").modulate = Color(1, 0.5, 0) # Orange
 		else:
+			last_visual_state = "cross"
 			get_node("Area2D/Icon").modulate = Color(1, 1, 0) # Yellow
 	else:
+		last_visual_state = "normal"
 		get_node("Area2D/Icon").modulate = Color(1, 1, 1) # White
 
 	if is_locked:
+			last_visual_state = "locked"
 			get_node("Area2D/Icon").modulate = Color(1, 0, 0) # Red
 
 func setup_rope_segment(i: String, j: int):
@@ -84,9 +92,8 @@ func _on_area_2d_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_ind
 
 func _on_area_2d_mouse_entered() -> void:
 	is_hovered = true
-	RopeManager.set_hovered_segment(self)
-
-	if is_in_cross or is_locked:
+	if not is_normal_state():
+		RopeManager.set_hovered_segment(self)
 		if controls_ui:
 			controls_ui.show_control_group(controls_ui.ControlGroup.LOCK)
 
@@ -95,12 +102,12 @@ func _on_area_2d_mouse_exited() -> void:
 	is_hovered = false
 	RopeManager.clear_hovered_segment(self)
 
-	if is_in_cross or is_locked:
+	if is_normal_state() and controls_ui:
 		controls_ui.hide_control_group(controls_ui.ControlGroup.LOCK)
 
 
 func toggle_lock():
-	if is_in_cross:
+	if not is_normal_state():
 		is_locked = !is_locked
 		if lock_icon:
 			lock_icon.set_locked(is_locked)
@@ -111,13 +118,19 @@ func toggle_lock():
 
 func apply_physics_lock(locked: bool):
 	if locked:
+		linear_damp = original_linear_damp * 100.0
+		angular_damp = original_angular_damp * 100.0
 		freeze = true
-		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 		linear_velocity = Vector2.ZERO
 		angular_velocity = 0.0
 	else:
 		freeze = false
-		freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
+		gravity_scale = original_gravity_scale
+		linear_damp = original_linear_damp
+		angular_damp = original_angular_damp
 
 func is_physics_locked() -> bool:
-	return freeze and is_locked
+	return is_locked
+
+func is_normal_state() -> bool:
+	return last_visual_state == "normal"

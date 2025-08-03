@@ -28,7 +28,8 @@ func addRopes(numRopes):
 			"crosses": [],
 			"end": null,
 			"currentCross": null,
-			"layer": int(ropeId)
+			"layer": int(ropeId),
+			"generator": self
 		}
 		RopeManager.ropes[ropeId] = newRopeObj
 		addRopeSegments(newRopeObj)

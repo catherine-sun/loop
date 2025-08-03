@@ -6,8 +6,8 @@ signal rope_collision_exit(collider, body)
 var crosses = {}
 var isActive = false
 var adjacentSegmentLength = 4
-var ropes = {}  # Dictionary to store ropes by ropeId
-var hovered_segment = null  # Track currently hovered segment
+var ropes = {}
+var hovered_segments = {}
 
 var adjacentSteps = range(-adjacentSegmentLength, adjacentSegmentLength+1)
 
@@ -21,16 +21,21 @@ func _ready() -> void:
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_Q and hovered_segment and (hovered_segment.is_in_cross or hovered_segment.is_locked):
-			print("Q pressed on cross segment: ", hovered_segment.rope_id, " segment ", hovered_segment.segment_id)
-			hovered_segment.toggle_lock()
+		if event.keycode == KEY_Q and hovered_segments.size() > 0:
+			for key in hovered_segments.keys():
+				var segment = hovered_segments[key]
+				if segment and not segment.is_normal_state():
+					print("Q pressed on segment: ", segment.rope_id, " segment ", segment.segment_id)
+					segment.toggle_lock()
 
 func set_hovered_segment(segment):
-	hovered_segment = segment
+	var key = str(segment.rope_id) + "_" + str(segment.segment_id)
+	hovered_segments[key] = segment
 
 func clear_hovered_segment(segment):
-	if hovered_segment == segment:
-		hovered_segment = null
+	var key = str(segment.rope_id) + "_" + str(segment.segment_id)
+	if hovered_segments.has(key):
+		hovered_segments.erase(key)
 
 func _on_global_rope_collision(collider, body):
 	if !isActive:
