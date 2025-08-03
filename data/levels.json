@@ -4,7 +4,7 @@
 			"name": "Crown Knot",
 			"numRopes": 3,
 			"knot": "test",
-			"scene": "res://components/knots/crown_knot.tscn"
+			"scene": "res://scenes/level.tscn"
 		},
 		{
 			"name": "Figure 8 Knot",

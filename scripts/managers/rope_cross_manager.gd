@@ -72,6 +72,9 @@ func init(ropeIds):
 		crosses[i] = []
 	isActive = true
 
+func pause():
+	isActive = false
+	
 func isInACross(ropeId):
 	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
 	

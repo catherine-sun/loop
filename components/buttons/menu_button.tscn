@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy2trr1yvumud"]
+[gd_scene load_steps=3 format=3 uid="uid://cy2trr1yvumud"]
 
 [ext_resource type="Script" uid="uid://c137rmf0xsq0" path="res://scripts/main_menu/menu_button.gd" id="1_yrgx8"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_wvlrq"]
 
 [node name="AspectRatioContainer" type="AspectRatioContainer"]
 anchors_preset = 15
@@ -13,10 +15,26 @@ script = ExtResource("1_yrgx8")
 [node name="MenuTextureButton" type="TextureButton" parent="."]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MenuTextureButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuTextureButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 405.0
+offset_top = 238.0
+offset_right = -6.0
+offset_bottom = -274.333
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Label
+"
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(0, 135.166)
+scale = Vector2(315, 306)
+texture = SubResource("ImageTexture_wvlrq")
