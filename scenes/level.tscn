@@ -1,3 +1,33 @@
-[gd_scene format=3 uid="uid://bwtf7jbjbi70b"]
+[gd_scene load_steps=5 format=3 uid="uid://bwtf7jbjbi70b"]
+
+[ext_resource type="PackedScene" uid="uid://bojab61wqp6n0" path="res://components/knots/crown_knot.tscn" id="1_2q6dc"]
+[ext_resource type="Texture2D" uid="uid://c2t6tfukfe1qr" path="res://assets/images/backgrounds/paleBG.png" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://b4ej3ykhdoc56" path="res://components/ui/controls.tscn" id="2_w7c3h"]
+[ext_resource type="FontFile" uid="uid://dmppp7baac8tm" path="res://assets/fonts/Jersey25-Regular.ttf" id="4_mx8sn"]
 
 [node name="Level" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 650.0
+texture = ExtResource("1_mx8sn")
+expand_mode = 5
+
+[node name="CrownKnot" parent="." instance=ExtResource("1_2q6dc")]
+position = Vector2(36, 92)
+
+[node name="Controls" parent="." instance=ExtResource("2_w7c3h")]
+offset_left = 944.0
+offset_top = 388.0
+offset_right = 1138.0
+offset_bottom = 616.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 27.0
+offset_top = 4.0
+offset_right = 383.0
+offset_bottom = 66.0
+theme_override_colors/default_color = Color(0.137255, 0.129412, 0.317647, 1)
+theme_override_fonts/normal_font = ExtResource("4_mx8sn")
+theme_override_font_sizes/normal_font_size = 60
+text = "1. ??? Knot"
