@@ -8,14 +8,17 @@
 [node name="RopeGenerator" parent="." instance=ExtResource("1_f8i7t")]
 position = Vector2(-300, 200)
 ropeLength = 50
+ropeId = "1"
 
 [node name="RopeGenerator2" parent="." instance=ExtResource("1_f8i7t")]
 position = Vector2(-300, 240)
 ropeLength = 50
+ropeId = "2"
 
 [node name="RopeGenerator3" parent="." instance=ExtResource("1_f8i7t")]
 position = Vector2(-300, 280)
 ropeLength = 50
+ropeId = "3"
 
 [node name="RopeFeeder" parent="." instance=ExtResource("2_gnsgt")]
 position = Vector2(100, 180)
