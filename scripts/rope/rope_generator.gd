@@ -6,6 +6,7 @@ extends Node2D
 @export var jointStiffness: float
 @export var ropeId: String
 
+
 const ROPE_SEGMENT = preload("res://components/rope/rope_segment.tscn")
 const ROPE_END = preload("res://components/rope/rope_end.tscn")
 
@@ -34,7 +35,12 @@ func addRopes(numRopes):
 		RopeManager.ropes[ropeId] = newRopeObj
 		addRopeSegments(newRopeObj)
 		ropeContainer.rotate(i * 0.1)
-
+		
+var textures = [
+	[preload("res://assets/images/rope/ropeEndBlue.png"), preload("res://assets/images/rope/ropeEndBlue.png")],
+	[preload("res://assets/images/rope/ropeEndRed.png"), preload("res://assets/images/rope/ropeEndRed.png")],
+	[preload("res://assets/images/rope/ropeEndYellow.png"), preload("res://assets/images/rope/ropeEndYellow.png")],
+]
 func addRopeSegments(rope):
 	var parent = rope["parent"]
 	var holder = $RopeHolder
@@ -49,6 +55,7 @@ func addRopeSegments(rope):
 		if i == ropeLength - 1:
 			newRopeSegment = ROPE_END.instantiate()
 			rope["end"] = newRopeSegment
+			newRopeSegment.get_node("CollisionShape2D/Sprite2D").texture = textures[int(ropeId) - 1][0]
 		else:
 			newRopeSegment = ROPE_SEGMENT.instantiate()
 			rope["segments"].append(newRopeSegment)

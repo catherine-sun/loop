@@ -62,11 +62,18 @@ func _process(_delta: float) -> void:
 			last_visual_state = "locked"
 			get_node("Area2D/Icon").modulate = Color(1, 0, 0) # Red
 
+var textures = [
+	[preload("res://assets/images/rope/ropeEndBlue.png"), preload("res://assets/images/rope/ropeEndBlue.png")],
+	[preload("res://assets/images/rope/ropeEndRed.png"), preload("res://assets/images/rope/ropeEndRed.png")],
+	[preload("res://assets/images/rope/ropeEndYellow.png"), preload("res://assets/images/rope/ropeEndYellow.png")],
+]
+
 func setup_rope_segment(i: String, j: int):
 	rope_id = i
 	segment_id = j
 	$Area2D.z_index = RopeManager.ropes[rope_id]["layer"]
 	name = "RopeSegment" + str(j)
+	$Area2D/Icon.texture = textures[int(i) - 1][1]
 
 func getLeftFeeder():
 	return leftFeeder
