@@ -31,8 +31,8 @@ func _ready() -> void:
 	viewport_size = get_viewport_rect().size
 	original_linear_damp = linear_damp
 
-	cursor_manager = get_node("/root/CursorManager") # Alternative path
-	controls_ui = get_node("/root/Level/Controls") # Get controls UI reference
+	cursor_manager = get_node("/root/CursorManager")
+	controls_ui = get_node("/root/Level/Controls")
 	controls_ui.hide_control_group(controls_ui.ControlGroup.UPDOWN)
 
 	var button = $CollisionShape2D/Sprite2D/Button

@@ -1,11 +1,13 @@
 extends MarginContainer
 
 enum ControlGroup {
-  UPDOWN,
-  LMB
+	UPDOWN,
+	LMB,
+	LOCK
 }
 @export var updown: BoxContainer
 @export var lmb: BoxContainer
+@export var lock: BoxContainer
 
 func show_control_group(group: ControlGroup) -> void:
 	match group:
@@ -13,6 +15,8 @@ func show_control_group(group: ControlGroup) -> void:
 			updown.show()
 		ControlGroup.LMB:
 			lmb.show()
+		ControlGroup.LOCK:
+			lock.show()
 
 func hide_control_group(group: ControlGroup) -> void:
 	match group:
@@ -20,3 +24,5 @@ func hide_control_group(group: ControlGroup) -> void:
 			updown.hide()
 		ControlGroup.LMB:
 			lmb.hide()
+		ControlGroup.LOCK:
+			lock.hide()

@@ -7,6 +7,7 @@ var crosses = {}
 var isActive = false
 var adjacentSegmentLength = 4
 var ropes = {}  # Dictionary to store ropes by ropeId
+var hovered_segment = null  # Track currently hovered segment
 
 var adjacentSteps = range(-adjacentSegmentLength, adjacentSegmentLength+1)
 
@@ -17,6 +18,18 @@ func _ready() -> void:
 	connect("rope_collision_exit", _on_global_rope_collision_exit)
 
 	init(["1", "2", "3"])
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_Q and hovered_segment and hovered_segment.is_in_cross:
+			print("Q pressed on cross segment: ", hovered_segment.rope_id, " segment ", hovered_segment.segment_id)
+
+func set_hovered_segment(segment):
+	hovered_segment = segment
+
+func clear_hovered_segment(segment):
+	if hovered_segment == segment:
+		hovered_segment = null
 
 func _on_global_rope_collision(collider, body):
 	if !isActive:
@@ -92,10 +105,6 @@ func formatCrossesForKnotDetection():
 			crossList.append({ "rope": cross["collider"]["ropeId"], "position": "over" })
 		obj[ropeId] = crossList
 	return obj
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func getOverlappingRopes():
 	if len(ropes) > 0:
