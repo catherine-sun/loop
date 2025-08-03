@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bojab61wqp6n0"]
+[gd_scene load_steps=5 format=3 uid="uid://bojab61wqp6n0"]
 
 [ext_resource type="PackedScene" uid="uid://ddved6dvms1nj" path="res://components/rope/rope_generator.tscn" id="1_f8i7t"]
 [ext_resource type="PackedScene" uid="uid://bhnte0jtkto65" path="res://components/rope/rope_feeder.tscn" id="2_gnsgt"]
+[ext_resource type="Script" uid="uid://cq7g441rh3kxn" path="res://scripts/rope/test_protec.gd" id="3_usdll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usdll"]
+size = Vector2(642, 116)
 
 [node name="CrownKnot" type="Node2D"]
 
@@ -25,3 +29,20 @@ position = Vector2(100, 180)
 
 [node name="RopeFeeder2" parent="." instance=ExtResource("2_gnsgt")]
 position = Vector2(100, 300)
+
+[node name="CollisionShape2D" type="Area2D" parent="."]
+position = Vector2(-62, 238.5)
+
+[node name="RopeFeederProtectionZone" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(62, -241.5)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("3_usdll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/RopeFeederProtectionZone"]
+position = Vector2(-61, 241)
+shape = SubResource("RectangleShape2D_usdll")
+debug_color = Color(0.894363, 0.245251, 0.52555, 0.42)
+
+[connection signal="body_shape_entered" from="CollisionShape2D/RopeFeederProtectionZone" to="CollisionShape2D/RopeFeederProtectionZone" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="CollisionShape2D/RopeFeederProtectionZone" to="CollisionShape2D/RopeFeederProtectionZone" method="_on_body_shape_exited"]

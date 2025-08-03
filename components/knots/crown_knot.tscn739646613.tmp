@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bojab61wqp6n0"]
+
+[ext_resource type="PackedScene" uid="uid://ddved6dvms1nj" path="res://components/rope/rope_generator.tscn" id="1_f8i7t"]
+[ext_resource type="PackedScene" uid="uid://bhnte0jtkto65" path="res://components/rope/rope_feeder.tscn" id="2_gnsgt"]
+[ext_resource type="Script" uid="uid://eiwt643pcp7s" path="res://scripts/rope/rope_feeder_protection_zone.gd" id="3_usdll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wpv7"]
+size = Vector2(293, 123)
+
+[node name="CrownKnot" type="Node2D"]
+
+[node name="RopeGenerator" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(-300, 200)
+ropeLength = 50
+ropeId = "1"
+
+[node name="RopeGenerator2" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(-300, 240)
+ropeLength = 50
+ropeId = "2"
+
+[node name="RopeGenerator3" parent="." instance=ExtResource("1_f8i7t")]
+position = Vector2(-300, 280)
+ropeLength = 50
+ropeId = "3"
+
+[node name="RopeFeeder" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(100, 180)
+
+[node name="RopeFeeder2" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(100, 300)
+
+[node name="RopeFeederProtectionZone" type="Area2D" parent="."]
+script = ExtResource("3_usdll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeFeederProtectionZone"]
+position = Vector2(113.5, 241.5)
+shape = SubResource("RectangleShape2D_3wpv7")
+debug_color = Color(0.409841, 0.593897, 0.357056, 0.42)

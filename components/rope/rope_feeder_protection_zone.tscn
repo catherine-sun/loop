@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://xm6f0ydhw2o3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuvqw"]
+size = Vector2(119, 55)
+
+[node name="RopeFeederProtectionZone" type="StaticBody2D"]
+position = Vector2(19, 19)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(49.5, 17.5)
+shape = SubResource("RectangleShape2D_fuvqw")
+debug_color = Color(0.734907, 0.301591, 0.897353, 0.42)

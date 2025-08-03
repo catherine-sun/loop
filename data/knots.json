@@ -1,26 +1,44 @@
 {
-	"crown": {
-		"numRopes": 3,
-		"crosses": {
-		  "1": [
-			{ "rope": 2, "position": "over" },
-			{ "rope": 2, "position": "over" },
-			{ "rope": 2, "position": "under" },
-			{ "rope": 3, "position": "under" },
-			{ "rope": 3, "position": "over" }
-		  ],
-		  "2": [
-			{ "rope": 3, "position": "over" },
-			{ "rope": 3, "position": "under" },
-			{ "rope": 1, "position": "under" },
-			{ "rope": 1, "position": "over" }
-		  ],
-		  "3": [
-			{ "rope": 1, "position": "over" },
-			{ "rope": 1, "position": "under" },
-			{ "rope": 2, "position": "under" },
-			{ "rope": 2, "position": "over" }
-		  ]
-		}
+  "crown": {
+	"numRopes": 3,
+	"crosses": {
+	  "1": [
+		{ "rope": "3", "position": "over" },
+		{ "rope": "2", "position": "over" },
+		{ "rope": "2", "position": "over" },
+		{ "rope": "2", "position": "under" },
+		{ "rope": "3", "position": "under" },
+		{ "rope": "3", "position": "over" }
+	  ],
+	  "2": [
+		{ "rope": "3", "position": "over" },
+		{ "rope": "3", "position": "over" },
+		{ "rope": "3", "position": "under" },
+		{ "rope": "1", "position": "under" },
+		{ "rope": "1", "position": "over" }
+	  ],
+	  "3": [
+		{ "rope": "3", "position": "over" },
+		{ "rope": "1", "position": "over" },
+		{ "rope": "1", "position": "under" },
+		{ "rope": "3", "position": "under" },
+		{ "rope": "2", "position": "under" },
+		{ "rope": "2", "position": "over" },
+	  ]
 	}
+  },
+  "test": {
+	"numRopes": 3,
+	"crosses": {
+	  "1": [],
+	  "2": [
+		{ "rope": "3", "position": "over" },
+		{ "rope": "3", "position": "under" }
+	  ],
+	  "3": [
+		{ "rope": "2", "position": "over" },
+		{ "rope": "2", "position": "over" }
+	  ]
+	}
+  }
 }

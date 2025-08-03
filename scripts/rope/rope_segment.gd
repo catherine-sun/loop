@@ -4,11 +4,13 @@ signal rope_collision
 signal rope_collision_exit
 
 var ropeId = -1
+var leftFeeder = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	collision_layer = 1
+	collision_mask = 2
+	add_to_group("ropePLEASE")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,9 +25,17 @@ func setRopeIds(i):
 func getRopeIds():
 	return ropeId
 
+func getLeftFeeder():
+	return leftFeeder
+	
+func setLeftFeeder(v):
+	leftFeeder = v
+	
+func updateSegmentCollision():
+	collision_layer = 4
+	collision_mask = 3
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print("Signal pls")
 	if "RopeSegment" in body.name:
 		RopeManager.emit_signal("rope_collision", body, self) # Replace with function body.
 
