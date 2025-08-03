@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bojab61wqp6n0"]
+[gd_scene load_steps=6 format=3 uid="uid://bojab61wqp6n0"]
 
 [ext_resource type="PackedScene" uid="uid://ddved6dvms1nj" path="res://components/rope/rope_generator.tscn" id="1_f8i7t"]
 [ext_resource type="PackedScene" uid="uid://bhnte0jtkto65" path="res://components/rope/rope_feeder.tscn" id="2_gnsgt"]
-[ext_resource type="Script" uid="uid://cq7g441rh3kxn" path="res://scripts/rope/test_protec.gd" id="3_usdll"]
+[ext_resource type="Script" path="res://scripts/rope/test_protec.gd" id="3_usdll"]
 [ext_resource type="Texture2D" uid="uid://m0hvmlbbo23p" path="res://assets/images/icons/crown_knot_preview.png" id="4_f7lts"]
-[ext_resource type="Texture2D" uid="uid://dsge8r57i7750" path="res://assets/images/base/crownKnotBase.png" id="5_8gyfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usdll"]
 size = Vector2(642, 116)
@@ -50,12 +49,6 @@ debug_color = Color(0.894363, 0.245251, 0.52555, 0.42)
 position = Vector2(1074.5, 54)
 scale = Vector2(0.0485417, 0.0496296)
 texture = ExtResource("4_f7lts")
-
-[node name="CrownKnotBase" type="Sprite2D" parent="."]
-z_index = 100
-position = Vector2(8, 212)
-scale = Vector2(0.295414, 0.365408)
-texture = ExtResource("5_8gyfs")
 
 [connection signal="body_shape_entered" from="CollisionShape2D/RopeFeederProtectionZone" to="CollisionShape2D/RopeFeederProtectionZone" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="CollisionShape2D/RopeFeederProtectionZone" to="CollisionShape2D/RopeFeederProtectionZone" method="_on_body_shape_exited"]

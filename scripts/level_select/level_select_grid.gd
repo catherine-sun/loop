@@ -2,6 +2,7 @@ extends GridContainer
 
 @export var level_image: Texture2D
 @export var level_image_hover: Texture2D
+@export var level_image_disabled: Texture2D
 @export var gridFont: Font
 @export var level_data: JSON
 
@@ -25,9 +26,13 @@ func _ready() -> void:
 		levelBox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		levelBox.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		levelBox.stretch_mode = TextureButton.STRETCH_SCALE
-		levelBox.texture_normal = level_image
-		levelBox.texture_hover = level_image_hover
-		levelBox.connect("pressed", func(): loadLevel(level))
+		if level.has("scene"):
+			levelBox.texture_normal = level_image
+			levelBox.texture_hover = level_image_hover
+			levelBox.connect("pressed", func(): loadLevel(level))
+		else:
+			levelBox.texture_normal = level_image_disabled
+			levelBox.texture_hover = level_image_disabled
 
 		# Label
 		var levelName = Label.new()

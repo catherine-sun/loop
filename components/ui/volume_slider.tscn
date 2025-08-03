@@ -4,13 +4,15 @@
 [ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="2_iki82"]
 
 [node name="VolumeSlider" type="VBoxContainer"]
+offset_right = 275.0
+offset_bottom = 55.0
 script = ExtResource("1_3n1vp")
 slider_label = "Music Volume"
 
 [node name="VolumeLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_iki82")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 text = "Volume"
 
 [node name="SliderContainer" type="HBoxContainer" parent="."]
@@ -28,7 +30,7 @@ value = 70.0
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_iki82")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 20
 text = "70%"
 
 [connection signal="value_changed" from="SliderContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

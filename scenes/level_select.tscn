@@ -1,16 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0ywpex5a18pv"]
+[gd_scene load_steps=15 format=3 uid="uid://c0ywpex5a18pv"]
 
 [ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="1_htctk"]
 [ext_resource type="Texture2D" uid="uid://c3skmqydsqmmh" path="res://assets/images/titlescreen/title_book_open.png" id="1_o2xx4"]
 [ext_resource type="Script" uid="uid://dyuysun3s8irk" path="res://scripts/level_select/level_select_grid.gd" id="2_chg43"]
 [ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="2_r77uv"]
+[ext_resource type="Script" uid="uid://c3k44rjxnvu5u" path="res://scripts/main_menu/settings_menu.gd" id="2_s6tf7"]
 [ext_resource type="Texture2D" uid="uid://6jcn5i0bdc0i" path="res://assets/images/knotEncyclopediaIcon.png" id="4_r77uv"]
 [ext_resource type="Texture2D" uid="uid://xar8ytlcp4xp" path="res://assets/images/book/bookYellow.png" id="5_4nqmc"]
 [ext_resource type="JSON" path="res://data/levels.json" id="5_chg43"]
 [ext_resource type="FontFile" uid="uid://bprgtwd02a2v" path="res://assets/fonts/ComingSoon-Regular.ttf" id="6_o2xx4"]
-[ext_resource type="Texture2D" uid="uid://c2nb7wbj0yner" path="res://assets/images/icons/back.png" id="7_7plkq"]
-[ext_resource type="Script" uid="uid://s5qki8guq87h" path="res://scripts/level_select/back_button.gd" id="8_ckc44"]
-[ext_resource type="PackedScene" uid="uid://dmn3de62ckbis" path="res://scenes/main_menu.tscn" id="9_ckc44"]
+[ext_resource type="Texture2D" uid="uid://jf6k28b3aash" path="res://assets/images/knotEncyclopediaIcon - Copy.png" id="8_u4mbh"]
+[ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="9_htctk"]
+[ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="10_s6tf7"]
+[ext_resource type="Script" path="res://scenes/texture_button.gd" id="11_u4mbh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6tf7"]
 texture = ExtResource("1_htctk")
@@ -22,6 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_s6tf7")
+script = ExtResource("2_s6tf7")
 
 [node name="TitleBookOpen" type="Sprite2D" parent="."]
 position = Vector2(1333, 891)
@@ -81,33 +84,27 @@ columns = 3
 script = ExtResource("2_chg43")
 level_image = ExtResource("4_r77uv")
 level_image_hover = ExtResource("5_4nqmc")
+level_image_disabled = ExtResource("8_u4mbh")
 gridFont = ExtResource("6_o2xx4")
 level_data = ExtResource("5_chg43")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="BackToHome" type="TextureButton" parent="CanvasLayer2"]
-offset_left = 49.0
-offset_top = 169.0
-offset_right = 213.0
-offset_bottom = 281.0
-texture_normal = ExtResource("7_7plkq")
-ignore_texture_size = true
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer2"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -936.0
+offset_top = 194.0
+offset_right = -806.0
+offset_bottom = 294.0
+grow_horizontal = 0
+scale = Vector2(-0.784476, -1.02115)
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_htctk")
+texture_pressed = ExtResource("10_s6tf7")
+texture_hover = ExtResource("10_s6tf7")
 stretch_mode = 0
-script = ExtResource("8_ckc44")
-backScene = ExtResource("9_ckc44")
+script = ExtResource("11_u4mbh")
 
-[node name="CurPageBookMark" type="TextureButton" parent="CanvasLayer2"]
-offset_left = 45.0
-offset_top = 48.0
-offset_right = 209.0
-offset_bottom = 160.0
-disabled = true
-texture_normal = ExtResource("7_7plkq")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("8_ckc44")
-backScene = ExtResource("9_ckc44")
-
-[connection signal="pressed" from="CanvasLayer2/BackToHome" to="CanvasLayer2/BackToHome" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer2/CurPageBookMark" to="CanvasLayer2/CurPageBookMark" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer2/TextureButton" to="." method="_on_back_button_pressed"]

@@ -10,7 +10,6 @@
 			"name": "Figure 8 Knot",
 			"numRopes": 2,
 			"knot": "figure8",
-			"scene": "res://components/knots/crown_knot.tscn"
 		},
 		{
 			"name": "Square Knot",
@@ -18,12 +17,12 @@
 			"knot": "crown"
 		},
 		{
-			"name": "IDK Knot",
+			"name": "???",
 			"numRopes": 2,
 			"knot": "crown"
 		},
 		{
-			"name": "idkkkk",
+			"name": "???",
 			"knot": "crown"
 
 		}

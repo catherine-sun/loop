@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://ney48blgvwdi"]
+[gd_scene load_steps=10 format=3 uid="uid://ney48blgvwdi"]
 
 [ext_resource type="Script" uid="uid://c3k44rjxnvu5u" path="res://scripts/main_menu/settings_menu.gd" id="1_settings"]
 [ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="2_bgjg7"]
 [ext_resource type="Texture2D" uid="uid://d1bv4m08m0jsp" path="res://assets/images/titlescreen/title_book_back.png" id="2_lwwgp"]
 [ext_resource type="PackedScene" uid="uid://bevq5w7yxgw6p" path="res://components/ui/volume_slider.tscn" id="2_volume"]
 [ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="3_labj1"]
-[ext_resource type="Texture2D" uid="uid://c2nb7wbj0yner" path="res://assets/images/icons/back.png" id="5_bgjg7"]
+[ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="6_n35ux"]
+[ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="7_fb6cq"]
+[ext_resource type="Script" path="res://scenes/texture_button.gd" id="8_2ctot"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_labj1"]
 
@@ -26,14 +28,15 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_labj1")
 script = ExtResource("1_settings")
 metadata/_edit_use_anchors_ = true
 
-[node name="RedBg" type="Sprite2D" parent="."]
-position = Vector2(341.5, 322.5)
-scale = Vector2(0.240208, 0.241111)
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(350.999, 329)
+scale = Vector2(0.266042, 0.276296)
 texture = ExtResource("2_bgjg7")
 
 [node name="TitleBookBack" type="Sprite2D" parent="."]
-position = Vector2(298.187, 326)
-scale = Vector2(0.210755, 0.247037)
+position = Vector2(345.999, 361)
+rotation = -0.017448
+scale = Vector2(0.207044, 0.26)
 texture = ExtResource("2_lwwgp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -61,7 +64,7 @@ theme_override_constants/separation = 20
 [node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundSection"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_labj1")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 60
 text = "Sound"
 
 [node name="MusicVolumeSlider" parent="MarginContainer/VBoxContainer/SoundSection" instance=ExtResource("2_volume")]
@@ -74,23 +77,21 @@ slider_label = "SFX Volume"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BackMenu" type="TextureButton" parent="CanvasLayer"]
-offset_left = 19.0
-offset_top = 132.0
-offset_right = 153.0
-offset_bottom = 253.0
-texture_normal = ExtResource("5_bgjg7")
-ignore_texture_size = true
-stretch_mode = 0
-
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
-offset_left = 15.0
-offset_top = 29.0
-offset_right = 153.0
-offset_bottom = 129.0
-disabled = true
-texture_normal = ExtResource("5_bgjg7")
-ignore_texture_size = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -947.0
+offset_top = 216.0
+offset_right = -817.0
+offset_bottom = 316.0
+grow_horizontal = 0
+scale = Vector2(-0.784476, -1.02115)
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_n35ux")
+texture_pressed = ExtResource("7_fb6cq")
+texture_hover = ExtResource("7_fb6cq")
 stretch_mode = 0
+script = ExtResource("8_2ctot")
 
-[connection signal="pressed" from="CanvasLayer/BackMenu" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_back_button_pressed"]

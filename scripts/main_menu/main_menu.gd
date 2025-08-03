@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Node2D
 
 const SETTINGS = preload("res://scenes/settings_menu.tscn")
 const PLAY = preload("res://scenes/level_select.tscn")
@@ -23,4 +23,5 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()  # Replace with function body.
+	pass
+	#get_tree().quit()  # Replace with function body.
