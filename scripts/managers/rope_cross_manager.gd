@@ -20,7 +20,7 @@ func _ready() -> void:
 func _on_global_rope_collision(collider, body):
 	if !isActive:
 		return
-		
+
 	if "RopeSegment" in collider.name and body is RigidBody2D:
 		if !collider.getLeftFeeder() or !body.getLeftFeeder():
 			return
@@ -30,8 +30,8 @@ func _on_global_rope_collision(collider, body):
 		var idToAdd = colliderId["ropeId"] if shouldWeAddThisCross(colliderId, bodyId) else null
 		if idToAdd != null:
 			crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId })
-		
-	
+
+
 # TODO: idk why this doesnt work
 func shouldWeAddThisCross(colliderId, bodyId):
 
@@ -45,10 +45,10 @@ func shouldWeAddThisCross(colliderId, bodyId):
 				if (compareRopeIds(col, cross["collider"]) and compareRopeIds(seg, cross["segment"])):
 					return false
 	return true
-					
+
 func adjacentSegment(bodyId, step):
 	return { "ropeId": bodyId["ropeId"], "segmentId": bodyId["segmentId"] + step }
-	
+
 func _on_global_rope_collision_exit(collider, body):
 	if !isActive:
 		return
@@ -62,10 +62,10 @@ func _on_global_rope_collision_exit(collider, body):
 
 func comparePairs(a, b):
 	return compareRopeIds(a["collider"], b["collider"]) and compareRopeIds(a["segment"], b["segment"])
-	
+
 func compareRopeIds(a, b):
 	return a["ropeId"] == b["ropeId"] and a["segmentId"] == b["segmentId"]
-	
+
 func init(ropeIds):
 	crosses = {}
 	for i in ropeIds:
@@ -77,8 +77,8 @@ func pause():
 	
 func isInACross(ropeId):
 	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
-	
-	
+
+
 func formatCrossesForKnotDetection():
 	var obj = {}
 	for ropeId in crosses.keys():
@@ -90,7 +90,7 @@ func formatCrossesForKnotDetection():
 			crossList.append({ "rope": cross["collider"]["ropeId"], "position": "over" })
 		obj[ropeId] = crossList
 	return obj
-			
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
