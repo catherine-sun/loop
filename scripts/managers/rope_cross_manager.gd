@@ -143,7 +143,11 @@ func swap_rope_layers(rope_id: String, old: int, new: int):
 	for other_id in ropes.keys():
 		if other_id != rope_id and ropes[other_id]["layer"] == new:
 			ropes[other_id]["layer"] = old
-			for segment in ropes[other_id]["segments"]:
+			var segments = ropes[other_id]["segments"]
+			for i in range(segments.size() - 1, -1, -1):
+				var segment = segments[i]
+				if segment.has_method("is_physics_locked") and segment.is_physics_locked():
+					break
 				segment.get_node("Area2D").z_index = old
 			if ropes[other_id]["end"]:
 				ropes[other_id]["end"].z_index = old
@@ -152,7 +156,11 @@ func swap_rope_layers(rope_id: String, old: int, new: int):
 	if ropes.has(rope_id):
 		ropes[rope_id]["layer"] = new
 		var rope = ropes[rope_id]
-		for segment in rope["segments"]:
+		var segments = rope["segments"]
+		for i in range(segments.size() - 1, -1, -1):
+			var segment = segments[i]
+			if segment.has_method("is_physics_locked") and segment.is_physics_locked():
+				break
 			segment.get_node("Area2D").z_index = new
 		if rope["end"]:
 			rope["end"].z_index = new
