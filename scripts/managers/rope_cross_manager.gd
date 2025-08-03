@@ -95,8 +95,10 @@ func init(ropeIds):
 func pause():
 	isActive = false
 	
-func isInACross(ropeId):
-	return crosses[ropeId["ropeId"]].any(func(x): return x["segment"]["segmentId"] == ropeId["segmentId"])
+func isInACross(rope_id, segment):
+	if crosses.has(rope_id):
+		return crosses[rope_id].any(func(x): return x["segment"]["segmentId"] == segment.segment_id)
+	return false
 	
 	
 
