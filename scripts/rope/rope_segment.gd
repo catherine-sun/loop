@@ -3,7 +3,7 @@ extends RigidBody2D
 signal rope_collision
 signal rope_collision_exit
 
-var rope_id = -1
+var rope_id = ""
 var segment_id = -1
 var leftFeeder = false
 
@@ -14,17 +14,17 @@ func _ready() -> void:
 	add_to_group("ropePLEASE")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if (RopeManager.isInACross(rope_id, self)):
-		get_node("Area2D/Icon").modulate =  Color(1, 1, 0)
+func _process(_delta: float) -> void:
+	if rope_id != "" and RopeManager.isInACross(rope_id, self):
+		get_node("Area2D/Icon").modulate = Color(1, 1, 0)
 	else:
-		get_node("Area2D/Icon").modulate =  Color(1, 1, 1)
+		get_node("Area2D/Icon").modulate = Color(1, 1, 1)
 
 func setup_rope_segment(i: String, j: int):
 	rope_id = i
 	segment_id = j
-	$Area2D.z_index = RopeManager.ropes[rope_id].layer
-	name = "RopeSegment" + str(i)
+	$Area2D.z_index = RopeManager.ropes[rope_id]["layer"]
+	name = "RopeSegment" + str(j)
 
 func getLeftFeeder():
 	return leftFeeder
