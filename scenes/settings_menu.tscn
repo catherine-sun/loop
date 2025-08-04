@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://c7dw5j8jpja4a" path="res://assets/fonts/lazy_dog.ttf" id="3_labj1"]
 [ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="6_n35ux"]
 [ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="7_fb6cq"]
-[ext_resource type="Script" path="res://scenes/texture_button.gd" id="8_2ctot"]
+[ext_resource type="Script" uid="uid://bs2u3t4dpk542" path="res://scenes/texture_button.gd" id="8_2ctot"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_labj1"]
 

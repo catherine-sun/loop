@@ -1,13 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwtf7jbjbi70b"]
+[gd_scene load_steps=18 format=3 uid="uid://bwtf7jbjbi70b"]
 
-[ext_resource type="PackedScene" uid="uid://bojab61wqp6n0" path="res://components/knots/crown_knot.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://bsavh7p4xis03" path="res://scenes/level.gd" id="1_2r41h"]
 [ext_resource type="Texture2D" uid="uid://c2t6tfukfe1qr" path="res://assets/images/backgrounds/paleBG.png" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://b4ej3ykhdoc56" path="res://components/ui/controls.tscn" id="2_w7c3h"]
 [ext_resource type="FontFile" uid="uid://dmppp7baac8tm" path="res://assets/fonts/Jersey25-Regular.ttf" id="4_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://bbv6du1qtinep" path="res://assets/images/backgrounds/paleBG - Copy.png" id="5_2r41h"]
 [ext_resource type="Texture2D" uid="uid://dsge8r57i7750" path="res://assets/images/base/crownKnotBase.png" id="5_ppgk2"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2r41h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_klq6b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b121j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c41q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olg7q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1rx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8iemx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64w2a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fpun6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wc255"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arp2o"]
+
 [node name="Level" type="Node2D"]
+script = ExtResource("1_2r41h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -24.0
@@ -16,19 +39,16 @@ offset_bottom = 751.0
 texture = ExtResource("1_mx8sn")
 expand_mode = 5
 
-[node name="CrownKnot" parent="." instance=ExtResource("1_2q6dc")]
-position = Vector2(9, 113)
-
 [node name="Controls" parent="." instance=ExtResource("2_w7c3h")]
 offset_left = 932.0
 offset_top = 408.0
 offset_right = 1126.0
 offset_bottom = 693.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="LevelLabel" type="RichTextLabel" parent="."]
 offset_left = 27.0
 offset_top = 4.0
-offset_right = 383.0
+offset_right = 757.0
 offset_bottom = 66.0
 theme_override_colors/default_color = Color(0.137255, 0.129412, 0.317647, 1)
 theme_override_fonts/normal_font = ExtResource("4_mx8sn")
@@ -36,6 +56,7 @@ theme_override_font_sizes/normal_font_size = 60
 text = "1. ??? Knot"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+z_index = 100
 offset_left = -126.0
 offset_top = 286.0
 offset_right = 268.0
@@ -48,3 +69,29 @@ z_index = 100
 position = Vector2(95, 367)
 scale = Vector2(0.17536, -0.209502)
 texture = ExtResource("5_ppgk2")
+
+[node name="LevelSetup" type="Node2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1091.0
+offset_top = 21.0
+offset_right = 1137.0
+offset_bottom = 52.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.86719, 0.381931, 0.365226, 1)
+theme_override_fonts/font = ExtResource("4_mx8sn")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2r41h")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_klq6b")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b121j")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8c41q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_olg7q")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_t1rx8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8iemx")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_64w2a")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fpun6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_wc255")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_arp2o")
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_back_button_pressed"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ddved6dvms1nj" path="res://components/rope/rope_generator.tscn" id="1_f8i7t"]
 [ext_resource type="PackedScene" uid="uid://bhnte0jtkto65" path="res://components/rope/rope_feeder.tscn" id="2_gnsgt"]
-[ext_resource type="Script" path="res://scripts/rope/test_protec.gd" id="3_usdll"]
+[ext_resource type="Script" uid="uid://cq7g441rh3kxn" path="res://scripts/rope/test_protec.gd" id="3_usdll"]
 [ext_resource type="Texture2D" uid="uid://m0hvmlbbo23p" path="res://assets/images/icons/crown_knot_preview.png" id="4_f7lts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usdll"]
@@ -25,12 +25,6 @@ position = Vector2(-300, 280)
 ropeLength = 50
 ropeId = "3"
 
-[node name="RopeFeeder" parent="." instance=ExtResource("2_gnsgt")]
-position = Vector2(100, 180)
-
-[node name="RopeFeeder2" parent="." instance=ExtResource("2_gnsgt")]
-position = Vector2(100, 300)
-
 [node name="CollisionShape2D" type="Area2D" parent="."]
 position = Vector2(-62, 238.5)
 
@@ -45,10 +39,22 @@ position = Vector2(-61, 241)
 shape = SubResource("RectangleShape2D_usdll")
 debug_color = Color(0.894363, 0.245251, 0.52555, 0.42)
 
+[node name="RopeFeeder" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(135, 184)
+
+[node name="RopeFeeder" parent="RopeFeeder" instance=ExtResource("2_gnsgt")]
+position = Vector2(-3, 38)
+
+[node name="RopeFeeder2" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(136, 300)
+
 [node name="CrownKnotPreview" type="Sprite2D" parent="."]
 position = Vector2(1074.5, 54)
 scale = Vector2(0.0485417, 0.0496296)
 texture = ExtResource("4_f7lts")
+
+[node name="RopeFeeder3" parent="." instance=ExtResource("2_gnsgt")]
+position = Vector2(136, 260)
 
 [connection signal="body_shape_entered" from="CollisionShape2D/RopeFeederProtectionZone" to="CollisionShape2D/RopeFeederProtectionZone" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="CollisionShape2D/RopeFeederProtectionZone" to="CollisionShape2D/RopeFeederProtectionZone" method="_on_body_shape_exited"]

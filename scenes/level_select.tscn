@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://jf6k28b3aash" path="res://assets/images/knotEncyclopediaIcon - Copy.png" id="8_u4mbh"]
 [ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="9_htctk"]
 [ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="10_s6tf7"]
-[ext_resource type="Script" path="res://scenes/texture_button.gd" id="11_u4mbh"]
+[ext_resource type="Script" uid="uid://bs2u3t4dpk542" path="res://scenes/texture_button.gd" id="11_u4mbh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6tf7"]
 texture = ExtResource("1_htctk")

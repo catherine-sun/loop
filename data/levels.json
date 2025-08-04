@@ -1,29 +1,42 @@
 {
 	"levels": [
 		{
-			"name": "Crown Knot",
+			"name": "Over and Under",
 			"numRopes": 3,
 			"knot": "test",
+			"locked": "false",
+			"scene": "res://scenes/level.tscn"
+		},
+		{
+			"name": "Square Knot",
+			"numRopes": 2,
+			"knot": "square",
+			"locked": "true",
+			"scene": "res://scenes/level.tscn"
+		},
+		{
+			"name": "Crown Knot",
+			"numRopes": 3,
+			"knot": "crown",
+			"locked": "true",
 			"scene": "res://scenes/level.tscn"
 		},
 		{
 			"name": "Figure 8 Knot",
 			"numRopes": 2,
 			"knot": "figure8",
-		},
-		{
-			"name": "Square Knot",
-			"numRopes": 2,
-			"knot": "crown"
+			"locked": "true"
 		},
 		{
 			"name": "???",
 			"numRopes": 2,
-			"knot": "crown"
+			"knot": "crown",
+			"locked": "true"
 		},
 		{
 			"name": "???",
-			"knot": "crown"
+			"knot": "crown",
+			"locked": "true"
 
 		}
 	]

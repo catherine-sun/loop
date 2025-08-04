@@ -104,13 +104,13 @@ var knotTemp =  {
 
 func detect_knot(intersections, knot):
 	
-	#print("WANT TO DETECT", intersections)
-	#print("FROM KNOT", knot)
+	print("WANT TO DETECT", intersections)
+	print("FROM KNOT", knot)
 	var numRopes = knot["numRopes"]
 	var crosses = knot["crosses"]
 
 
-	var origRopeKeys = range(1, numRopes + 1).map(func(x): return str(x))
+	var origRopeKeys = range(1, numRopes + 1).map(func(x): return str(int(x)))
 
 	var isKnot = false
 	for permutation in allPermutations[str(int(numRopes))]:
@@ -137,7 +137,8 @@ func isRopeMatch(ropeKeyAssignment, crosses, correctCrosses, ropeKeys):
 		if (len(crossList) == len(correctCrossList)):
 			for i in range(len(crossList)):
 				var idx = str(int(i + 1))
-				if (ropeKeyAssignment[crossList[i]["rope"]] == correctCrossList[i]["rope"] and (ignoreOverUnder or crossList[i]["position"] == correctCrossList[i]["position"])):
+				var assignedToI = ropeKeyAssignment[idx]
+				if (crossList[i]["rope"] == ropeKeyAssignment[correctCrossList[i]["rope"]] and (ignoreOverUnder or crossList[i]["position"] == correctCrossList[i]["position"])):
 					continue
 				else:
 					return false

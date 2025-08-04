@@ -7,10 +7,11 @@ extends GridContainer
 @export var level_data: JSON
 
 var grids = []
+var levels = {}
+
 # create the level select screen
 func _ready() -> void:
-	var levels = level_data.get_data()
-
+	levels = level_data.get_data()
 	var i = 1
 	var numLevels = levels["levels"].size()
 	for level in levels["levels"]:
@@ -26,7 +27,7 @@ func _ready() -> void:
 		levelBox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		levelBox.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		levelBox.stretch_mode = TextureButton.STRETCH_SCALE
-		if level.has("scene"):
+		if LevelManager.getUnlockedLevels().any(func(x): return x == level.name):
 			levelBox.texture_normal = level_image
 			levelBox.texture_hover = level_image_hover
 			levelBox.connect("pressed", func(): loadLevel(level))
