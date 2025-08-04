@@ -13,7 +13,7 @@ func _ready() -> void:
 	var curLevelNode = levelScenes[currentLevel["numRopes"] - 1].instantiate()
 	curLevelNode.position = Vector2(27, 117)
 	$LevelSetup.add_child(curLevelNode)
-	$LevelLabel.text = currentLevel["name"]
+	$LevelLabel.text = currentLevel["number"] + ". " + currentLevel["name"]
 
 
 

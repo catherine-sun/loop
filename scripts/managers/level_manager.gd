@@ -12,6 +12,8 @@ var unlockedLevels = []
 func _ready() -> void:
 	allKnots = read_json_file("res://data/knots.json")
 	levels = read_json_file("res://data/levels.json")
+	for i in range(len(levels["levels"])):
+		levels["levels"][i]["number"] = str(int(i+1))
 	unlockedLevels = [levels["levels"][0].name]
 
 	pass # Replace with function body.
@@ -22,6 +24,9 @@ func _process(delta: float) -> void:
 	if currentLevel != null:
 		detectLevelOver()
 	pass
+	
+func getLevels():
+	return levels
 	
 func getCurrentLevel():
 	return currentLevel

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0ywpex5a18pv"]
+[gd_scene load_steps=14 format=3 uid="uid://c0ywpex5a18pv"]
 
 [ext_resource type="Texture2D" uid="uid://byyovinaxwvut" path="res://assets/images/backgrounds/redBG_alt.png" id="1_htctk"]
 [ext_resource type="Texture2D" uid="uid://c3skmqydsqmmh" path="res://assets/images/titlescreen/title_book_open.png" id="1_o2xx4"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://c3k44rjxnvu5u" path="res://scripts/main_menu/settings_menu.gd" id="2_s6tf7"]
 [ext_resource type="Texture2D" uid="uid://6jcn5i0bdc0i" path="res://assets/images/knotEncyclopediaIcon.png" id="4_r77uv"]
 [ext_resource type="Texture2D" uid="uid://xar8ytlcp4xp" path="res://assets/images/book/bookYellow.png" id="5_4nqmc"]
-[ext_resource type="JSON" path="res://data/levels.json" id="5_chg43"]
 [ext_resource type="FontFile" uid="uid://bprgtwd02a2v" path="res://assets/fonts/ComingSoon-Regular.ttf" id="6_o2xx4"]
 [ext_resource type="Texture2D" uid="uid://jf6k28b3aash" path="res://assets/images/knotEncyclopediaIcon - Copy.png" id="8_u4mbh"]
 [ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="9_htctk"]
@@ -86,7 +85,6 @@ level_image = ExtResource("4_r77uv")
 level_image_hover = ExtResource("5_4nqmc")
 level_image_disabled = ExtResource("8_u4mbh")
 gridFont = ExtResource("6_o2xx4")
-level_data = ExtResource("5_chg43")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 

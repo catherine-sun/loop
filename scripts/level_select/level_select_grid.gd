@@ -4,14 +4,13 @@ extends GridContainer
 @export var level_image_hover: Texture2D
 @export var level_image_disabled: Texture2D
 @export var gridFont: Font
-@export var level_data: JSON
 
 var grids = []
 var levels = {}
 
 # create the level select screen
 func _ready() -> void:
-	levels = level_data.get_data()
+	levels = LevelManager.getLevels()
 	var i = 1
 	var numLevels = levels["levels"].size()
 	for level in levels["levels"]:
