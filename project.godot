@@ -13,7 +13,8 @@ config_version=5
 config/name="loop"
 run/main_scene="uid://dmn3de62ckbis"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://ghabcult0ujk"
+config/windows_native_icon="res://assets/images/wktl.ico"
 
 [autoload]
 
