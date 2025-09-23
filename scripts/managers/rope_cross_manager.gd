@@ -8,7 +8,7 @@ var isActive = false
 var adjacentSegmentLength = 4
 var ropes = {}
 var hovered_segments = {}
-
+var ropeCount = 3
 var adjacentSteps = range(-adjacentSegmentLength, adjacentSegmentLength+1)
 
 
@@ -18,6 +18,9 @@ func _ready() -> void:
 	connect("rope_collision_exit", _on_global_rope_collision_exit)
 
 	init(["1", "2", "3"])
+
+func _process(delta):
+	maintainCrossListIntegrity()
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -50,9 +53,12 @@ func _on_global_rope_collision(collider, body):
 		var idToAdd = colliderId["ropeId"] #if shouldWeAddThisCross(colliderId, bodyId) else null
 		if idToAdd != null and shouldWeAddThisCross(colliderId, bodyId):
 			var equivalentCrosses = getSimilarCrosses(colliderId, bodyId, adjacentSteps)
-			crosses[bodyId["ropeId"]] = crosses[bodyId["ropeId"]].filter(func(x): return !equivalentCrosses.any(func(y): return x == y))
-			crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId, "colliderNode": collider, "segmentNode": body  })
-
+			if (not equivalentCrosses.any(func(x): return x["segmentNode"].is_physics_locked())):
+				crosses[bodyId["ropeId"]] = crosses[bodyId["ropeId"]].filter(func(x): return !equivalentCrosses.any(func(y): return x == y))
+				crosses[bodyId["ropeId"]].append({ "collider": colliderId, "segment": bodyId, "colliderNode": collider, "segmentNode": body  })
+			var equivColliderCrosses = getSimilarCrosses(bodyId, colliderId, adjacentSteps)
+			if (len(equivColliderCrosses) == 0):
+				crosses[colliderId["ropeId"]].append({ "collider": bodyId, "segment": colliderId, "colliderNode": body, "segmentNode": collider  })
 
 # TODO: idk why this doesnt work
 func shouldWeAddThisCross(colliderId, bodyId):
@@ -84,7 +90,7 @@ func _on_global_rope_collision_exit(collider, body):
 		var colliderId = {"ropeId": collider.rope_id, "segmentId": collider.segment_id}
 		var bodyId = {"ropeId": body.rope_id, "segmentId": body.segment_id}
 		var idToAdd = colliderId["ropeId"]
-		if idToAdd:
+		if idToAdd and not (collider.is_physics_locked() and body.is_physics_locked()):
 			crosses[bodyId["ropeId"]] = crosses[bodyId["ropeId"]].filter(func(x): return !compareRopeIds(x["collider"], colliderId) or !compareRopeIds(x["segment"], bodyId))
 
 func comparePairs(a, b):
@@ -98,6 +104,7 @@ func init(ropeIds):
 	for i in ropeIds:
 		crosses[i] = []
 	isActive = true
+	ropeCount = len(ropeIds)
 
 func pause():
 	isActive = false
@@ -108,6 +115,17 @@ func isInACross(rope_id, segment):
 	return false
 	
 	
+func lockCross(ropeSegmentNode):
+	var segmentCrosses = crosses[ropeSegmentNode.getRopeId()].filter(func(x): return x["segmentNode"] == ropeSegmentNode)
+	for c in segmentCrosses:
+		if (not c["colliderNode"].is_physics_locked()):
+			c["colliderNode"].toggle_lock()
+		
+func unlockCross(ropeSegmentNode):
+	var segmentCrosses = crosses[ropeSegmentNode.getRopeId()].filter(func(x): return x["segmentNode"] == ropeSegmentNode)
+	for c in segmentCrosses:
+		if (c["colliderNode"].is_physics_locked()):
+			c["colliderNode"].toggle_lock()
 
 func formatCrossesForKnotDetection():
 	var obj = {}
@@ -117,7 +135,7 @@ func formatCrossesForKnotDetection():
 		crossesForRope.sort_custom(func(a,b): return a["segment"]["segmentId"] < b["segment"]["segmentId"])
 
 		for cross in crossesForRope:
-			var adjacentCrosses = getSimilarCrosses(cross["collider"], cross["segment"], range(-6,1))
+			var adjacentCrosses = getSimilarCrosses(cross["collider"], cross["segment"], range(-1,1))
 			var numOver = len( adjacentCrosses.filter(func(c): return c["colliderNode"].get_node("Area2D").z_index >  c["segmentNode"].get_node("Area2D").z_index))
 			var numUnder = len( adjacentCrosses.filter(func(c): return c["colliderNode"].get_node("Area2D").z_index <  c["segmentNode"].get_node("Area2D").z_index))
 
@@ -141,14 +159,14 @@ func getOverlappingRopes():
 			_nextSegment = segments[i+1] if i < numSegments - 1 else null
 			_prevSegment = segments[i-1] if i > 0 else null
 			var segment = segments[i]
-			var segmentOverlappingNodes = segment.get_node("Area2D").get_overlapping_bodies().map(func(n): return n.rope_id if "RopeSegment" in n.name and (n.rope_id != segment.rope_id or abs(n.segment_id - segment.segment_id) > 2) else null)
+			var segmentOverlappingNodes = segment.get_node("CrossCollisionArea2D").get_overlapping_bodies().map(func(n): return n.rope_id if "RopeSegment" in n.name and (n.rope_id != segment.rope_id or abs(n.segment_id - segment.segment_id) > 2) else null)
 			segmentOverlappingNodes = segmentOverlappingNodes.filter(func(x): return x != null and x != "")
 			overlappingRopes = overlappingRopes + segmentOverlappingNodes.filter(func(x): return x != null and x != "")
 		return overlappingRopes
 	return []
 
 func get_rope_count():
-	return 3
+	return ropeCount
 
 func swap_rope_layers(rope_id: String, old: int, new: int):
 	if old == new:
@@ -178,3 +196,15 @@ func swap_rope_layers(rope_id: String, old: int, new: int):
 			segment.get_node("Area2D").z_index = new
 		if rope["end"]:
 			rope["end"].z_index = new
+
+
+func maintainCrossListIntegrity():
+	for crossKey in crosses.keys():
+		var crossList = crosses[crossKey]
+		for cross in crossList:
+			var equivColliderCrosses = getSimilarCrosses(cross["segment"], cross["collider"], adjacentSteps)
+			var colliderCrossList = crosses[cross["collider"]["ropeId"]]
+			if not colliderCrossList.any(func(x): return equivColliderCrosses.any(func(y): return comparePairs(x,y))):
+				crosses[cross["collider"]["ropeId"]].append({"collider": cross["segment"], "colliderNode": cross["segmentNode"], "segment": cross["collider"], "segmentNode": cross["colliderNode"]})
+				if cross["segmentNode"].is_physics_locked() and not cross["colliderNode"].is_physics_locked():
+					cross["colliderNode"].toggle_lock()

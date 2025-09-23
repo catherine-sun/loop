@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dpssr1u2xp3v7" path="res://assets/images/titlescreen/exit_bookmark.png" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c7x6bw1v5mdso" path="res://assets/images/titlescreen/exit_bookmark_hovered_or_clicked.png" id="7_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://dnuxnqrhb46jk" path="res://assets/images/icons/play_hover.png" id="7_lgwnu"]
-[ext_resource type="Script" path="res://scenes/texture_button.gd" id="7_tbmy8"]
+[ext_resource type="Script" uid="uid://bs2u3t4dpk542" path="res://scenes/texture_button.gd" id="7_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://bwum1abgpllim" path="res://assets/images/icons/settings_hover.png" id="8_flqon"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]

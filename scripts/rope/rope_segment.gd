@@ -5,7 +5,7 @@ signal rope_collision_exit
 
 var rope_id = ""
 var segment_id = -1
-var leftFeeder = false
+var leftFeeder = true
 var controls_ui
 var lock_icon
 
@@ -85,6 +85,9 @@ func updateSegmentCollision():
 	collision_layer = 4
 	collision_mask = 3
 
+func getRopeId():
+	return rope_id
+
 func _on_area_2d_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if "RopeSegment" in body.name:
 		RopeManager.emit_signal("rope_collision", body, self) # Replace with function body.
@@ -130,11 +133,13 @@ func apply_physics_lock(locked: bool):
 		freeze = true
 		linear_velocity = Vector2.ZERO
 		angular_velocity = 0.0
+		RopeManager.lockCross(self)
 	else:
 		freeze = false
 		gravity_scale = original_gravity_scale
 		linear_damp = original_linear_damp
 		angular_damp = original_angular_damp
+		RopeManager.unlockCross(self)
 
 func is_physics_locked() -> bool:
 	return is_locked
